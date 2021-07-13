@@ -1,0 +1,51 @@
+.cbkApp-Auth {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .auth-contents {
+        display: table;
+        margin-top: 10vh;
+        height: auto;
+
+        > .auth-brand {
+            height: 1vh;
+            text-align: center;
+            user-select: none;
+
+            .auth-account {
+                font-weight: bold;
+            }
+
+            > .brand-logo {
+                width: auto;
+                height: 100%;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+            > .brand-name {
+                cursor: pointer;
+                margin-right: 5px;
+                font-size: 3em;
+                font-weight: bold;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .auth-box {
+        margin-top: 1vh;
+        width: 100%;
+        min-width: 400px;
+        .auth-language-change{
+            cursor: pointer;
+        }
+
+        // > .auth-box-contents {
+        //     padding: 8px;
+        //     margin: 2vh;
+        // }
+    }
+}

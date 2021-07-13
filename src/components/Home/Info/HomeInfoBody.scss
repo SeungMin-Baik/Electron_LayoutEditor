@@ -1,0 +1,128 @@
+.cbkApp-HomeInfoBodyTable-Middle {
+    display: flex;
+    width: 100%;
+    margin-top: -5vh;
+
+    .cbkApp-HomeInfoBodyTable-Devicelist {
+        width: 50%;
+        background: white;
+        border-radius: 4px;
+        box-shadow:
+            0 1px 3px 0 rgba(0, 0, 0, 0.2),
+            0 1px 1px 0 rgba(0, 0, 0, 0.14),
+            0 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+        .HomeInfoBodyTable-Devicelist-title {
+            font-weight: bold;
+            font-size: 1.5em;
+            padding: 2vh 0vw 2vh 2vw;
+        }
+
+        .HomeInfoBodyTable-Devicelist-TableHead {
+            display: flex;
+            width: 100%;
+
+            .TableHead-Info-Name {
+                width: 40%;
+                padding: 1vh 0 1vw 2vw;
+                color: #e2e2e2;
+            }
+            .TableHead-Info-Status {
+                width: 20%;
+                padding: 1vh 0 1vw 2vw;
+                color: #e2e2e2;
+            }
+            .TableHead-Info-Date {
+                width: 40%;
+                padding: 1vh 0 1vw 2vw;
+                color: #e2e2e2;
+            }
+        }
+
+        .HomeInfoBodyTable-Devicelist-TableData {
+            width: 100%;
+            height: 35vh;
+            .HomeInfoBodyTable-Devicelist-TableData-Info {
+                display: flex;
+                width: 100%;
+    
+                .TableData-Info-Name {
+                    display: flex;
+                    width: 40%;
+                    padding: 1vh 0 1vw 2vw;
+
+                    .Name-icon {
+                        margin-right: 0.5vw;
+                    }
+
+                    .Name-text {
+
+                    }
+                }
+                .TableData-Info-Status {
+                    width: 20%;
+                    padding: 1vh 0 1vw 2vw;
+                }
+                .TableData-Info-Date {
+                    width: 40%;
+                    padding: 1vh 0 1vw 2vw;
+                }
+            }
+        }        
+
+        .HomeInfoBodyTable-Devicelist-NullData {
+            text-align: center;
+            padding-top: 5vh;
+        }
+    }
+
+    .cbkApp-HomeInfoBodyTable-Dummy {
+        width: 5%;
+    }
+
+    .cbkApp-HomeInfoBodyTable-Store {
+        height: 24vh;
+        background-Color: white;
+        width: 40%;
+
+        .HomeInfoBodyTable-Store-Title {
+            font-weight: bold;
+            font-size: 1.5em;
+            padding: 2vh 0vw 2vh 2vw;
+        }
+
+        .HomeInfoBodyTable-Store-Grid {
+            .gridList {
+                width: 100%;
+                height: 100%;
+                padding-left: 1.3vw;
+        
+                li {
+                    width: 6vw !important;
+                    height: 12vh !important;
+                    margin: 10px;
+                    margin-left: 1.5vw;
+                    box-shadow:
+                    0 1px 3px 0 rgba(0, 0, 0, 0.2),
+                    0 1px 1px 0 rgba(0, 0, 0, 0.14),
+                    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+                }
+            }
+        
+            .thumnail {
+                width: 100%;
+                height: 100%;
+        
+                li {
+                    margin: 10px;
+                    margin-left: 1.7vw;
+                    box-shadow:
+                    0 1px 3px 0 rgba(0, 0, 0, 0.2),
+                    0 1px 1px 0 rgba(0, 0, 0, 0.14),
+                    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+                }
+            }
+        }    
+    }
+    
+}

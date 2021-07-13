@@ -1,0 +1,95 @@
+.cbkApp-AuthSignIn {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    .signin-language-font{
+        font-size: 3vh;
+        float: right;
+        margin-top: -1vh;
+    }
+
+    .signin-form {
+        width: 100%;
+        max-width: 400px;
+
+        > .form-button {
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 17px;
+            width: 100%;
+            border-radius: 4px;
+            color: white;            
+            background: linear-gradient(to right, #011a6a, #1a01e1);
+            transition: 500ms ease-in-out;
+
+            [role='progressbar'] {
+                margin-right: 10px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                opacity: 0.8;
+            }
+        }
+
+        .form-button-disable {
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 17px;
+            width: 100%;
+            border-radius: 4px;
+            color: #e2e2e2;            
+            background: #0f1c46bd;
+
+            [role='progressbar'] {
+                margin-right: 10px;
+            }
+        }
+
+        > .form-input {
+            width: 100%;
+
+            label {
+                color: #4444ab !important;
+            }
+
+            fieldset {
+                border-color: #4444ab !important;
+            }
+        }
+
+        > .form-extCover {
+            display: flex;
+            justify-content: flex-end;
+            .form-ext {
+                margin-top: 2px;
+                margin-right: 1vw;
+    
+                a {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: rgba(0, 0, 0, 0.5);
+                    text-decoration: none;
+    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .form-ext-last {
+                margin-top: 2px;
+    
+                a {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: rgba(0, 0, 0, 0.5);
+                    text-decoration: none;
+    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

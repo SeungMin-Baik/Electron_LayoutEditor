@@ -1,0 +1,19 @@
+.LayoutEditor-Title {
+    width: 100%;
+    align-items: center;
+    height: 7vh;
+    // border-bottom: groove;
+    // border-bottom-color: #ffffff7a;
+    display: flex;
+
+    .Title-Name {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-right: 2vw;
+    }
+
+    .Title-Desc {
+        padding-top: 1vh;
+    }
+
+}

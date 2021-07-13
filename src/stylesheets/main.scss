@@ -1,0 +1,21 @@
+@import './app.common';
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif, Arial;
+    background: #f2f2f2;
+}
+
+::selection {
+    background-color: #cce2ff;
+    color: rgba(0, 0, 0, 0.87);
+    text-shadow: none;
+}

@@ -1,0 +1,61 @@
+.homeInfoHead {    
+    display: flex;
+    width: 97%;
+    max-width: 100%;
+    height: 100%;
+    margin-top: 1vh;
+    margin-bottom: 6vh;
+    margin-left: -10px;
+    > .infoItem {
+        display: flex;
+        text-decoration: none;
+        cursor: pointer;
+        align-self: flex-end;
+        background-color: white;
+        margin: 2.5vh 1vw 1vw 1vh;
+        width: 100%;
+        border-radius: 15px;
+        padding: 1.5vh;
+        color: #989898;
+        box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+        .infoText {
+            width: 70%;
+            display: flex;
+            align-self: flex-end;
+            margin-left: 1vh;
+            font-size: 2.3vh;
+
+            span {
+                align-self: flex-end;
+                padding-bottom: 1vh;
+                font-weight: bold;
+                color: #c3c3c3;
+            }
+
+            > .infoData {
+                color: #00e2a5;
+                margin-left: 1.5vw;
+                align-self: flex-end;
+                font-size: 3em;
+                font-weight: bold;
+            }
+        }
+
+        .infoIcon {
+            width: 30%;
+            text-align: end;
+
+            .infoIcon-info {
+                font-size: 6.5em;
+                color: #e2e2e2;
+            }
+        }
+    
+    }
+
+    
+}

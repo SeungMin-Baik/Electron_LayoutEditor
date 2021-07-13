@@ -1,0 +1,69 @@
+.cbkApp-NavBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    z-index: 50;
+
+    > .cbkApp-NavBar-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 8vh;
+        color: #333;
+
+        > .cbkApp-NavBar-info {
+            display: flex;
+            position: fixed;
+            right: 0;
+            margin-right: 3vw;
+            color: rgb(99, 99, 99);
+
+            .cbkApp-Language-Change {
+                align-self: center;
+                font-weight: bold;
+                margin-right: 1vw;
+                padding-top: 0.5vh;
+
+                .cbkApp-Language-Change-Icon {
+                    font-size: 2em;
+                    margin-right: 0.5vw;
+                    margin-top: 0.3vh;
+                }
+            }
+
+            .cbkApp-NaBar-info-Logout {
+                display: flex;
+                padding-bottom: 0.7vh;
+                cursor: pointer;
+
+                .cbkApp-NaBar-info-LogoutText {
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    margin-right: 1vw;
+                    margin-top: 0.6vh;
+                }
+
+                .cbkApp-NaBar-info-LogoutIcon {
+                    font-size: 2.5em;
+                    margin-top: 1vh;
+                    margin-right: 0.5vw;
+                }
+            }
+
+            > .cbkApp-NavBar-detail {
+                margin-top: 0.5vh;
+                padding-right: 4vh;
+
+                > .cbkApp-NavBar-storage {
+                    margin-top: 0.5vh;
+                    font-size: 2vh;
+                }
+            }
+        }
+
+        
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    // "esModuleInterop": true,
+    "moduleResolution": "node",
+    "keyofStringsOnly": false,
+    "declaration": false,
+    "sourceMap": false,
+    "outDir": "dist",
+    "jsx": "react",
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"],
+      "@assets/*": ["assets/*"]
+      // "@public/*": ["public/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "typings/**/*"
+    ]
+  },
+  "exclude": [
+    "config"
+  ]
+}
+

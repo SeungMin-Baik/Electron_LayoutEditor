@@ -1,0 +1,42 @@
+    .Complete-auth-emailvarify{
+        display: flex;
+        margin-top: 11vh;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #06f;
+    }
+
+    .Complete-auth-text{
+        text-align: center;
+        font-size: 15px;
+        line-height: 32px;
+        margin-top: 3vh;
+    }
+
+  .complete_button {
+    margin-left: 17vw;
+    margin-top: 5vh;
+
+    .email_resend {
+        top: 5vh;
+        padding: 8px;
+        font-weight: bold;
+        width: 310px;
+        font-size: 2vh;
+        background-color: #06f;
+        color: white;
+        
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+    .sign-up-next{
+        font-size: 16px;
+        width: 315px;
+        height: 40px;
+        top: 6vh;
+        right: 16.2vw;
+    }
+  }
+

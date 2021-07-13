@@ -1,0 +1,51 @@
+.RegisterInfo {
+    margin-top: 3vh;
+
+    .SingUpNext {
+        margin-top: 7vh;
+        display: flex;
+        justify-content:center;
+        font-weight: bold;
+
+        .registerInfo_signupnext_close {
+            padding: 1vh;
+            margin: 1.5vw;
+            font-weight: bold;
+            width: 14.5vw;
+            font-size: 2vh;
+            background-color: gray;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .registerInfo_signupnext_confirm {
+            padding: 1vh;
+            margin: 1.5vw;
+            font-weight: bold;
+            width: 14.5vw;
+            font-size: 2vh;
+            margin-left: -1vh;
+            background-color: #06f;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .registerInfo_signupnext_false {
+            padding: 1vh;
+            margin: 1.5vw;
+            font-weight: bold;
+            width: 14.5vw;
+            font-size: 2vh;
+            margin-left: -1vh;
+            color: #929292
+        }
+    }
+}

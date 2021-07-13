@@ -1,0 +1,72 @@
+.LayoutEditor-PanelTab {
+    display: flex;
+    height: 100%;
+    margin-right: 3.5vw;
+
+    .LayoutEditor-Tab {
+        width: 4vw;
+        text-align: center;
+        background: #ffffff9e;
+        box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    
+        .LayoutEditor-Tab-info {
+            padding-top: 3.5vh;
+            .editorMenu-list {
+                .editorMenu-item {
+                    font-size: 2em;
+                    padding-bottom: 3vh;
+                    cursor: pointer;
+                }
+
+                .editorMenu-item-unselect {
+                    color: #b3b3b3;
+                    font-size: 2em;
+                    padding-bottom: 3vh;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .LayoutEditor-Panel {
+        width: 17vw;
+        overflow: auto;
+        background: #ffffff9e;
+        box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+        .panel-text {
+            margin-bottom: 1vh;
+            .panel-textSelect {
+                margin-left: 1vh;
+            }
+
+            .panel-textInput {
+                width: 100%;
+                margin-bottom: 3vh;
+            }
+
+            .panel-textResult {
+                width: 100%;
+            }
+
+            .drag-icon {
+                color: gray;
+                margin-right: 1vw;
+            }
+        }
+
+        .panel-text-description {
+            font-weight: bold;
+            font-size: 0.8em;
+            text-align: center;
+            margin-bottom: 2vh;
+        }
+
+    }
+}

@@ -1,0 +1,27 @@
+// Loading gradient box
+.cbkApp-common-box {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+// Loading gradient box
+.cbkApp-common-load-placeholder {
+    animation-name: cbkAppLoadingPlaceHolder;
+    animation-duration: 1800ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #fafafa 8%, #e8e8e8 38%, #fafafa 54%);
+    background-size: 1000px 640px;
+    position: relative;
+}
+
+@keyframes cbkAppLoadingPlaceHolder {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}

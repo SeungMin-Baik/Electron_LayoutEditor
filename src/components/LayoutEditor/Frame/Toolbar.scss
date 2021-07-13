@@ -1,0 +1,65 @@
+.LayoutEditor-Toolbar {
+    height: 4vh;
+    width: 100%;
+    margin-bottom: 3px;
+    border-bottom: groove;
+    border-bottom-color: #ffffff7a;
+    // margin: -7px 0 0 -7px;
+
+    .Toolbar-info {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        color: #424242;
+        padding-left: 0vw;
+
+        .Toolbar-info-icons {
+            cursor: pointer;
+            margin: 0 0.3vw 0 0.3vw;
+
+            .select-option-button {
+                text-transform: none;
+                border: none;
+                padding: 0;
+                background: none;
+                cursor: pointer;
+            }
+
+            .select-option-button:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+            .popover-cover {
+                position: absolute;
+                cursor: none !important;
+                width: 100%;
+                height: 100%;   
+                z-index: 998;          
+                .popover {
+                    left: 37%;
+                    top: 17%;
+                    z-index: 999;
+                }
+            }
+
+            &:hover {
+                color: rgb(31, 206, 197);
+                transition: 50ms ease-in;
+            }
+        }
+
+        .Toolbar-info-divider {
+            border-left: 1px solid #63595973;
+            height: 60%;
+            margin: 0 0.3vw 0 0.3vw;
+        }
+    }
+    .Toolbar-info-right{
+        display: flex;
+        height: 100%;
+        align-items: center;
+        color: #424242;
+        padding-right: 1vw;
+    }
+}
