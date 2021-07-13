@@ -1,7 +1,3 @@
-
-# Cublick-Player-Cloud
-Cublick player cloud version with windows
-
 ## Version Info 
 
 * NodeJS : 10.16.0
@@ -12,7 +8,7 @@ Cublick player cloud version with windows
 1. Install package with command **[yarn]** and **[yarn.lock]** file
 2. Command **[yarn dev]**
 
-## Build project
+## Build project (release)
 
 1. Install node-gyp module as global (Run cmd as administrator -> **[yarn add global node-gyp]**)
 2. Install two libraries related to building canvas through this website ( https://github.com/Automattic/node-canvas/wiki/Installation:-Windows )
