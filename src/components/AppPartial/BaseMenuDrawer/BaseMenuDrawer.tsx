@@ -43,6 +43,13 @@ class BaseMenuDrawer extends React.Component<BaseMenuDrawerProps, BaseMenuDrawer
     private menuList = [
 
         {
+            id: 'app-menu.item.layout-Editor',
+            defaultName: 'Layout Editor',
+            icon: faEdit,
+            link: '/layoutEditor'
+        },
+
+        {
             id: 'app-menu.item.asset',
             defaultName: 'Asset',
             icon: faFolders,
@@ -55,13 +62,6 @@ class BaseMenuDrawer extends React.Component<BaseMenuDrawerProps, BaseMenuDrawer
             defaultName: 'Presentation',
             icon: faIcons,
             link: '/presentation'
-        },
-
-        {
-            id: 'app-menu.item.layout-Editor',
-            defaultName: 'Layout Editor',
-            icon: faEdit,
-            link: '/layoutEditor'
         },
 
     ];

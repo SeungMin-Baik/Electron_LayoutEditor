@@ -57,7 +57,7 @@ class Auth extends React.Component<AuthProps, AuthStates> {
                         {/* <img className='brand-logo'
                             src={null}
                         /> */}
-                        <div className='auth-account'> ID: smbaik PASS: smbaik123 </div>
+                        <div className='auth-account'> ID: smbaik  PASS: smbaik123 </div>
                     </div>
 
                     {/* Auth form box */}

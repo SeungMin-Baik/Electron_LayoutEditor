@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import DevicesOutlinedIcon from '@material-ui/icons/DevicesOutlined';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
 import EmojiSymbolsOutlinedIcon from '@material-ui/icons/EmojiSymbolsOutlined';
+import { faEdit } from '@fortawesome/pro-regular-svg-icons/faEdit';
 
 import './HomeInfoHead.scss';
 
@@ -42,7 +43,6 @@ class HomeInfoHead extends React.Component<HomeInfoHeadProps, HomeInfoHeadStates
             findPresentationData: [],
             findPlaylistData: [],
             language: ''
-
         };
     }
 
@@ -63,21 +63,15 @@ class HomeInfoHead extends React.Component<HomeInfoHeadProps, HomeInfoHeadStates
 
             <Link
                 className='infoItem'
-                to='/device'>
+                to='/LayoutEditor'>
                     <div className='infoText'>
                         <FormattedMessage
-                            id='app-HomeInfo.totalDevices'
-                            defaultMessage='Total Devices' />
-                                <div className='infoData'>
-                                    {
-                                        this.state.findDeviceData ?
-                                            this.state.findDeviceData.length
-                                        : 0
-                                    }
-                                </div>
+                            id='app-HomeInfo.layoutEditor'
+                            defaultMessage='Link to LayoutEditor'
+                        />
                     </div>
                     <div className='infoIcon'>
-                        <DevicesOutlinedIcon className='infoIcon-info' />
+                        <FontAwesomeIcon className='infoIcon-info' icon={faEdit} />
                     </div>
             </Link>
 

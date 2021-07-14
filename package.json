@@ -1,17 +1,17 @@
 {
-  "name": "otrix-standalone-dashboard",
+  "name": "layout-editor-project",
   "version": "0.0.1",
-  "description": "The web-based dashboard of Cublick",
+  "description": "The electron-based react editor",
   "main": "./dist/main.js",
-  "author": "Cublick Digital Co., Ltd. <support@cublick.com>",
+  "author": "Seoung Min Baik",
   "license": "MIT",
   "maintainers": [
     "Seoung Min Baik <qortmdalsdl22@gmail.com>"
   ],
   "private": true,
   "build": {
-    "appId": "com.cublick-standalone-dashboard",
-    "productName": "Otrix_Standalone_Dashboard",
+    "appId": "com.editor-baik",
+    "productName": "Layout_Editor_Project",
     "extraResources": "resources",
     "asar": true,
     "files": [
@@ -33,7 +33,7 @@
       "icon": "resources/icons/icon.icns"
     },
     "dmg": {
-      "title": "Cublick Dashboard"
+      "title": "Editor Dashboard"
     },
     "win": {
       "target": "nsis",
@@ -45,8 +45,8 @@
       "deleteAppDataOnUninstall": false,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "installerIcon": "./resources/cublick.ico",
-      "installerHeaderIcon": "./resources/cublick.png"
+      "installerIcon": "",
+      "installerHeaderIcon": ""
     },
     "directories": {
       "buildResources": "resources",
@@ -72,11 +72,7 @@
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
-  "bugs": {
-    "url": "https://github.com/SSU-ERCLab/SDSS_WEB_DISPLAYER/issues"
-  },
   "dependencies": {
-    "@cublick/renderer": "^3.9.3-cloud",
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-brands-svg-icons": "^5.6.3",
     "@fortawesome/pro-regular-svg-icons": "^5.6.3",

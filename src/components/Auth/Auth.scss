@@ -6,7 +6,7 @@
 
     .auth-contents {
         display: table;
-        margin-top: 10vh;
+        margin-top: 25vh;
         height: auto;
 
         > .auth-brand {
@@ -16,6 +16,8 @@
 
             .auth-account {
                 font-weight: bold;
+                margin-bottom: 1vh;
+                font-size: 1.5em;
             }
 
             > .brand-logo {

@@ -21,7 +21,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 
 import { APIList, APIListParams } from '@app/apis';
-import { getPresentationDesign } from '@app/apis/presentation/presentationApi';
 import { PresentationDatabaseFindAllReq, ServerPresentationDataInsertReq, PresentationDatabaseDeletetReq } from '@app/utils/renderer/initialize/DatabaseReq';
 import { writeAssetAsThumbnail, writePresentationAsThumbnail } from '@app/utils/renderer/fileManager/writeFile';
 import { writeMediaAsFile } from '@app/utils/renderer/fileManager/writeFile';
@@ -122,7 +121,6 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
         super(props);
         this.onPageChange = this.onPageChange.bind(this);
         this.onPerPageChange = this.onPerPageChange.bind(this);
-        this.ClickServerImg = this.ClickServerImg.bind(this);
         this.handleChangeTab = this.handleChangeTab.bind(this);
         this.findData = this.findData.bind(this);
         this.findThumbnail = this.findThumbnail.bind(this);
@@ -447,31 +445,13 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
             const data = JSON.parse((e.target as any).dataset.all);
             this.waitConfirmData = data;
         } else if (download === true) {
-            this.ClickServerImg();
+            // this.ClickServerImg();
         }
         this.setState({
                 openDownConfirm: open
         });
     }
 
-    private ClickServerImg() {
-        if (!this.props.isSelect) {
-            getPresentationDesign(this.waitConfirmData.id)
-                // .then(res => console.log(res))
-                .then(res => {
-                    ServerPresentationDataInsertReq(res),
-                    writeMediaAsFile('PRESENTATION', res),
-                    writePresentationAsThumbnail(this.waitConfirmData.id);
-                    res.assets.map(asset => {
-                        writeAssetAsThumbnail(asset.id);
-                    });
-                })
-                .then(() => { this.findData(); this.findThumbnail(); })
-                .catch((err: Error) => {
-                    console.log('write Presentation err');
-                });
-        }
-    }
 
     private ClickClientImg(e: React.SyntheticEvent, id?: string) {
         const Clientdata = JSON.parse((e.target as any).dataset.all);

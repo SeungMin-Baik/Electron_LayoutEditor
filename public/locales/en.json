@@ -85,6 +85,7 @@
   "app-Home.action": "Action",
   "app-Home.updateDate": "Update date",
   "app-HomeInfo.totalDevices": "Total Devices : ",
+  "app-HomeInfo.layoutEditor": "Link to LayoutEditor",
   "app-HomeInfo.asset": "Asset : ",
   "app-HomeInfo.pesentation": "Presentation : ",
   "app-HomeInfo.playlist": "Playlist : ",
