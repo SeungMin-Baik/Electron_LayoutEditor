@@ -37,7 +37,7 @@ import Popover from '@material-ui/core/Popover';
 import InputLabel from '@material-ui/core/InputLabel';
 
 
-import AssetUploadDialog from '../../Asset/AssetUploadDialog';
+import AssetUploadDialog from '../../Asset/Dialog/AssetUploadDialog';
 
 // Stylesheet
 import './Toolbar.scss';

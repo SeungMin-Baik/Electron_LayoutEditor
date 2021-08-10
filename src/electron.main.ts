@@ -7,7 +7,6 @@ import * as path from 'path';
  * Functions for main process and electron browser window.
  * ============================== */
 import {
-    initAppMediaFiles,
     initAppMediaThumbnails,
     initAppOtherIpcObservers,
     // initAppAutoUpdater,
@@ -18,8 +17,6 @@ import {
     DatabaseFindRes,
     DatabaseUpdateRes
 } from './utils/main/initialize';
-
-import { initAppUDPServer } from './utils/main/UdpServer';
 
 
 /** Main electron window. */
@@ -72,9 +69,6 @@ function initAppUtilities() {
         // Init app database.
         initAppDatabase();
 
-        // Init app media directories and files.
-        initAppMediaFiles();
-
         initAppMediaThumbnails();
 
         // Observe other app IPC.
@@ -93,8 +87,6 @@ function initAppUtilities() {
         DatabaseFindRes();
 
         DatabaseUpdateRes();
-
-        initAppUDPServer();
 
     } catch (err) {
         console.error(

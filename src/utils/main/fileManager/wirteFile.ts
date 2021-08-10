@@ -4,10 +4,7 @@ import * as fs from 'fs';
 import * as http from 'http';
 import { promisify } from 'util';
 
-import { decompressFile } from '../fileManager/decompressFile';
 import config from '../../../config/electron-config';
-import { ipcRenderer } from 'electron';
-import { imageThumbnail } from '../thumbnail';
 
 const unlink = promisify(fs.unlink);
 const append = promisify(fs.appendFile);
@@ -119,65 +116,6 @@ export function writeMediaAsFile(event: any, media: any, type: string): Promise<
     });
 }
 
-export function writeWidgetAsThumbnail(event: any, url: any, instantId): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-    try {
-        const filePath = path.join(
-            config.APP.DIR_PATH.WIDGET_PATH,
-            instantId
-        );
-        const file = fs.createWriteStream(filePath);
-        getMediaData(url, file)
-        .then(() => resolve())
-        .catch((err) => {
-            console.log(err);
-            reject();
-        });
-    } catch (err) {
-        reject(`ERROR_INIT_FILE_MANAGE: ${err}`);
-    }
-    });
-}
-
-export function writeAssetAsThumbnail(event: any, url: any, assetId): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-    try {
-        const filePath = path.join(
-            config.APP.DIR_PATH.ASSET_PATH,
-            assetId
-        );
-        const file = fs.createWriteStream(filePath);
-        getMediaData(url, file)
-        .then(() => resolve())
-        .catch((err) => {
-            console.log(err);
-            reject();
-        });
-    } catch (err) {
-        reject(`ERROR_INIT_FILE_MANAGE: ${err}`);
-    }
-    });
-}
-
-export function writePresentationAsThumbnail(event: any, url: any, presentationId): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-    try {
-        const filePath = path.join(
-            config.APP.DIR_PATH.PRESENTATION_PATH,
-            presentationId
-        );
-        const file = fs.createWriteStream(filePath);
-        getMediaData(url, file)
-        .then(() => resolve())
-        .catch((err) => {
-            console.log(err);
-            reject();
-        });
-    } catch (err) {
-        reject(`ERROR_INIT_FILE_MANAGE: ${err}`);
-    }
-    });
-}
 
 export function writeLocalPresentationAsThumbnail(event: any, thumbnail: any, presentationId): Promise<void> {
     return new Promise<void>((resolve, reject) => {

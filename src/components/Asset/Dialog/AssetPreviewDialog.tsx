@@ -6,10 +6,7 @@ import {  AssetDatabaseFindOneReq } from '@app/utils/renderer/initialize/Databas
 
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 import Button from '@material-ui/core/Button';
-// import { CublickParser } from '@cublick/parser';
-// import { CublickRenderer } from '@cublick/renderer';
 import Grow from '@material-ui/core/Grow';
-import { push } from 'connected-react-router';
 
 
 // Stylesheet
@@ -27,7 +24,6 @@ type AssetPreviewDialogState = {
 };
 
 class AssetPreviewDialog extends React.Component<AssetPreviewDialogProps, AssetPreviewDialogState> {
-    private mainRender: any;
     constructor(props: AssetPreviewDialogProps) {
         super(props);
         this.state = {
@@ -39,19 +35,6 @@ class AssetPreviewDialog extends React.Component<AssetPreviewDialogProps, AssetP
         this.getAssetData();
     }
 
-    componentDidMount() {
-        // this.mainRender = new CublickRenderer(document.getElementById('DisplayerMain'), {
-        //     electronCompatible: true,
-        //     displayMode: 'ASPECT_RATIO',
-        //     // customFonts: {
-        //     //     fonts,
-        //     //     sourceStylesheet
-        //     // }
-        // });
-    }
-
-    componentDidUpdate() {
-    }
 
     render() {
         const { formatMessage } = this.props.intl;
@@ -66,9 +49,6 @@ class AssetPreviewDialog extends React.Component<AssetPreviewDialogProps, AssetP
                         <div className='content-title-info'> {this.props.title} </div>
                     </div>
                     <div className='AssetPreviewDialog-content-info'>
-                        <div className='content-info-renderer'>
-                            <div id='DisplayerMain' />
-                        </div>
                         <div className='content-info-data'>
                             developing,,,
                             {
@@ -172,25 +152,12 @@ class AssetPreviewDialog extends React.Component<AssetPreviewDialogProps, AssetP
     }
 
     private getAssetData = () => {
-        // AssetDatabaseFindOneReq(this.props.assetId);
-        // setTimeout(() => {
-        //     this.setState({
-        //         assetData: store.getState().appAssetData.assetDataOne.dataOne
-        //     }, () => {
-        //         const parser = new CublickParser({
-        //             apis: {
-        //                 asset: `${electronConfig.APP.DIR_PATH.FILE_PATH}/{id}`,
-        //                 assetThumbnail: `${electronConfig.APP.DIR_PATH.THUMBNAIL_PATH}/{id}_thumb`,
-        //             }
-        //         });
-
-        //         const parsedAssetData = parser.parse(this.state.assetData.FileData);
-
-        //         this.mainRender.renderPresentation(parsedAssetData, {
-        //             contentDataInputType: 'PARSED'
-        //         });
-        //     });
-        // }, 100);
+        AssetDatabaseFindOneReq(this.props.assetId);
+        setTimeout(() => {
+            this.setState({
+                assetData: store.getState().appAssetData.assetDataOne.dataOne
+            });
+        }, 100);
     }
 
 

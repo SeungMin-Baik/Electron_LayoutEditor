@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList } from '@fortawesome/pro-regular-svg-icons/faList';
-import { faFolders } from '@fortawesome/pro-regular-svg-icons/faFolders';
-import { faIcons } from '@fortawesome/pro-regular-svg-icons/faIcons';
-import { faDesktop } from '@fortawesome/pro-solid-svg-icons/faDesktop';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import DevicesOutlinedIcon from '@material-ui/icons/DevicesOutlined';
 import PermMediaOutlinedIcon from '@material-ui/icons/PermMediaOutlined';
 import EmojiSymbolsOutlinedIcon from '@material-ui/icons/EmojiSymbolsOutlined';
 import { faEdit } from '@fortawesome/pro-regular-svg-icons/faEdit';
@@ -15,10 +10,9 @@ import './HomeInfoHead.scss';
 
 import store from '@app/store';
 
-import { DeviceDatabaseFindAllReq,
-        AssetDatabaseFindAllReq,
-        PresentationDatabaseFindAllReq,
-        PlaylistDatabaseFindAllReq,
+import {
+    AssetDatabaseFindAllReq,
+    PresentationDatabaseFindAllReq,
 } from '@app/utils/renderer/initialize/DatabaseReq';
 
 
@@ -121,10 +115,8 @@ class HomeInfoHead extends React.Component<HomeInfoHeadProps, HomeInfoHeadStates
     }
 
     private findDataInDb () {
-        DeviceDatabaseFindAllReq();
         AssetDatabaseFindAllReq();
         PresentationDatabaseFindAllReq();
-        PlaylistDatabaseFindAllReq();
     }
 
     private findData () {

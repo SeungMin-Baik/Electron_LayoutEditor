@@ -6,28 +6,19 @@ import ImageDataList from '@app/components/Asset/AssetDataList';
 import PresentationDataList from '@app/components/Presentation/PresentationDataList';
 import MapList from '../mapList/MapList';
 
-import { apiAsset } from '@app/apis/asset';
-import { apiPresentation } from '@app/apis/presentation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIcons } from '@fortawesome/pro-regular-svg-icons/faIcons';
 import { faImages } from '@fortawesome/pro-regular-svg-icons/faImages';
 import { faVideo } from '@fortawesome/pro-regular-svg-icons/faVideo';
 import { faText } from '@fortawesome/pro-regular-svg-icons/faText';
-import { faThermometerFull } from '@fortawesome/pro-regular-svg-icons/faThermometerFull';
 import { faThList } from '@fortawesome/pro-solid-svg-icons/faThList';
-import { faShapes } from '@fortawesome/pro-regular-svg-icons/faShapes';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { v4 } from 'uuid';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
@@ -35,9 +26,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import './PanelTab.scss';
 import { Button, Tooltip } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import { constrainPoint } from '@fullcalendar/core';
-import { DoubleArrowTwoTone } from '@material-ui/icons';
-import * as INPUTSOURCE from '../../../../public/media/inputcamera.png';
 
 import * as fs from 'fs';
 import electronConfig from '@app/config/electron-config';
@@ -116,18 +104,6 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
             path: 'Template'
         },
         {
-            id: 'app-layoutEditor.list.figure',
-            defaultName: 'Figure',
-            icon: faShapes,
-            path: 'Figure'
-        },
-        // {
-        //     id: 'app-layoutEditor.list.input',
-        //     defaultName: 'Thermal Camera',
-        //     icon: faThermometerFull,
-        //     path: 'Input'
-        // },
-        {
             id: 'app-layoutEditor.list.list',
             defaultName: 'Layer List',
             icon: faThList,
@@ -153,14 +129,10 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
         };
     }
     componentDidMount() {
-        // const { canvasRef } = this.props;
-        // this.waitForCanvasRender(canvasRef);
         this.waitForCanvasRender(this.props.canvasRef.current);
         this.findThumbnail();
     }
     componentWillUnmount() {
-        // const { canvasRef } = this.props;
-        // this.detachEventListener(canvasRef);
     }
     componentDidUpdate() {
     }
@@ -263,18 +235,11 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
             case 'Template':
                 return (
                     <PresentationDataList
-                        head={[]}
-                        defaultSort={{
-                            sort: 'updateDate',
-                            order: 'DESC'
-                        }}
                         filter={{
                             key: 'owner',
                             operator: '=',
                             value: 'mine'
                         }}
-                        api={apiPresentation}
-                        isSend={false}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
                         onDragEnd={(e, item) => this.events.onDragEnd(e)}
@@ -284,19 +249,12 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
             case 'Image':
                 return (
                     <ImageDataList
-                        head={[]}
-                        defaultSort={{
-                            sort: 'updateDate',
-                            order: 'DESC'
-                        }}
                         filters={{
                             key: 'mimeType',
                             operator: '=',
                             value: 'IMAGE'
                         }}
-                        api={apiAsset}
                         saveSelectMedia={() => ''}
-                        isSend={false}
                         isSelect={false}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
@@ -307,65 +265,12 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
             case 'Video':
                 return (
                     <ImageDataList
-                        head={[]}
-                        defaultSort={{
-                            sort: 'updateDate',
-                            order: 'DESC'
-                        }}
                         filters={{
                             key: 'mimeType',
                             operator: '=',
                             value: 'VIDEO'
                         }}
-                        api={apiAsset}
                         saveSelectMedia={() => ''}
-                        isSend={false}
-                        isSelect={false}
-                        isEditor={true}
-                        onDragStart={(e, item) => this.events.onDragStart(e, item)}
-                        onDragEnd={(e, item) => this.events.onDragEnd(e)}
-                    />
-                );
-
-            case 'Figure':
-                return (
-                    <ImageDataList
-                        head={[]}
-                        defaultSort={{
-                            sort: 'updateDate',
-                            order: 'DESC'
-                        }}
-                        filters={{
-                            key: 'mimeType',
-                            operator: '=',
-                            value: 'FRAME'
-                        }}
-                        api={apiAsset}
-                        saveSelectMedia={() => ''}
-                        isSend={false}
-                        isSelect={false}
-                        isEditor={true}
-                        onDragStart={(e, item) => this.events.onDragStart(e, item)}
-                        onDragEnd={(e, item) => this.events.onDragEnd(e)}
-                    />
-                );
-
-            case 'Input':
-                return (
-                    <ImageDataList
-                        head={[]}
-                        defaultSort={{
-                            sort: 'updateDate',
-                            order: 'DESC'
-                        }}
-                        filters={{
-                            key: 'mimeType',
-                            operator: '=',
-                            value: 'INPUT_SOURCE'
-                        }}
-                        api={apiAsset}
-                        saveSelectMedia={() => ''}
-                        isSend={false}
                         isSelect={false}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
@@ -554,27 +459,7 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                 }
             } else {
 
-            // Thermal camera
-            if (this.item === 'Input') {
-                const inputImage = new Image();
-                inputImage.src = INPUTSOURCE;
-
-                option = Object.assign({}, this.item.option, {
-                    assetid: 'Input',
-                    type: 'image',
-                    name: 'Input Camera',
-                    src: INPUTSOURCE,
-                    mimeType: 'INPUT_SOURCE',
-                    left: layerX,
-                    top: layerY,
-                    width: 608,
-                    height: 342,
-                    crossOrigin: 'anonymous'
-                });
-
-            }
             // Asset
-            else {
                 // Local data
                 if (this.item.FileData) {
                     if (this.item.FileData.mimeType && this.item.FileData.mimeType === 'IMAGE') {
@@ -655,21 +540,6 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                             }, 1000);
                         });
                     }
-                } else if (this.item.mimeType && this.item.mimeType === 'FRAME') {
-                    option = Object.assign({}, this.item.option, {
-                        assetid: this.item.id,
-                        type: 'svg',
-                        md5: this.item.md5,
-                        fileType: this.item.fileType,
-                        mimeType: this.item.mimeType,
-                        name: this.item.name,
-                        src: this.item.img,
-                        left: layerX,
-                        top: layerY,
-                        // width: this.item.FileData.width,
-                        // height: this.item.FileData.height,
-                        crossOrigin: 'anonymous'
-                    });
                 } else {
                     option = Object.assign({}, this.item.option, {
                         type: 'textbox',
@@ -680,7 +550,6 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                         crossOrigin: 'anonymous'
                     });
                 }
-            }
 
             if ((this.item.FileData && this.item.FileData.type === 'presentation')) {
                 return false;

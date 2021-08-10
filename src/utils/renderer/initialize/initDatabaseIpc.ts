@@ -72,19 +72,6 @@ export function initAppDatabaseInsertIpc(): Promise<void> {
                     });
             });
 
-            ipcRenderer.on('App-DataBase-InsertServerData', (event: any, asset: any) => {
-                insertServerAssetDataInDB(event, asset)
-                    .then(() => {
-                        dialog.showMessageBox(null, downSuccessOptions);
-                        console.log('insert assetDB success');
-                    })
-                    .catch(() => {
-                        console.log('insert assetDB err');
-                        dialog.showMessageBox(null, errorOptions);
-                    });
-            });
-
-
             ipcRenderer.on('Presentation-DataBase-InsertLocalData', (event: any, presentation: any) => {
                 insertLocalPresentationDataInDB(event, presentation)
                     .then(() => {
@@ -197,55 +184,6 @@ export function initAppDatabaseFindIpc(): Promise<void> {
 export function initAppDatabaseUpdateIpc(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
-
-            // SCHEDULE
-
-            ipcRenderer.on('Schedule-DataBase-Update', (event: any, schedule: any) => {
-                updateScheduleInDB(event, schedule)
-                    .then(() => {
-                        console.log('success');
-                    })
-                    .catch(() => {
-                        console.log('err');
-                    });
-            });
-
-            // PLAYLIST
-
-            ipcRenderer.on('Playlist-DataBase-Update', (event: any, playlist: any) => {
-                updatePlaylistInDB(event, playlist)
-                    .then(() => {
-                        console.log('success');
-                    })
-                    .catch(() => {
-                        console.log('err');
-                    });
-            });
-
-            // INSTANTMESSAGE
-
-            ipcRenderer.on('InstantMessage-DataBase-Update', (event: any, instantMessage: any) => {
-                updateInstantMessageInDB(event, instantMessage)
-                    .then(() => {
-                        console.log('success');
-                    })
-                    .catch(() => {
-                        console.log('err');
-                    });
-            });
-
-            // DEVICE
-
-            ipcRenderer.on('Device-DataBase-Update', (event: any, device: any) => {
-                updateDeviceInDB(event, device)
-                    .then(() => {
-                        console.log('success');
-                    })
-                    .catch(() => {
-                        console.log('err');
-                    });
-            });
-
             // PRESENTATION
 
             ipcRenderer.on('Presentation-DataBase-UpdateData', (event: any, presentation: any) => {
