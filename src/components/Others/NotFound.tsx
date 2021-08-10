@@ -1,4 +1,6 @@
 import * as React from 'react';
+import store from '@app/store';
+import { push } from 'connected-react-router';
 
 class NotFound extends React.Component<{}, {}> {
     constructor(props: {}) {
@@ -6,17 +8,15 @@ class NotFound extends React.Component<{}, {}> {
     }
 
     componentDidMount() {
-        console.log('Dude, I\'m mounted...!');
+        store.dispatch(push('/'));
     }
 
     componentWillUnmount() {
-        console.log('See ya, buddy...!');
     }
 
     render() {
         return (
             <div>
-                <span>Wrong page</span>
             </div>
         );
     }

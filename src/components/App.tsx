@@ -10,11 +10,6 @@ import {
     NotFound as NotFoundComponent
 } from './Others';
 
-// Utils
-import { isTokenValid, ProtectedRoute } from '@app/utils/auth';
-
-// Models
-import { AppContainerProps } from './AppContainer';
 
 import {
     initAppDatabaseInsertIpc,
@@ -23,10 +18,6 @@ import {
     initAppDatabaseUpdateIpc
  } from '@app/utils/renderer/initialize/initDatabaseIpc';
 
-import { connectToDashboardIpc } from '@app/utils/renderer/server/UDPServerIpc';
-
-import { createMessageKey, createDecryptionKey, createActivateToken } from '@app/utils/renderer/server/others';
-
 // Stylesheet
 import './App.scss';
 
@@ -34,10 +25,6 @@ import './App.scss';
 // Asynchronous app components for lazy-load
 const AsyncHomeComponent = Loadable({
     loader: () => import(/* webpackChunkName: "home" */ './Home'),
-    loading: LoadingPage
-});
-const AsyncAuthComponent = Loadable({
-    loader: () => import(/* webpackChunkName: "auth" */ './Auth'),
     loading: LoadingPage
 });
 const AsyncAssetComponent = Loadable({
@@ -62,13 +49,9 @@ type AppComponentStates = {
 type AppComponentProps = {
     localeData?: Function;
     localCode?: string;
-} & AppContainerProps;
-
-// 컴포넌트들의 routing 정의 및 토큰 검사 컴포넌트
+};
 
 class App extends React.Component<AppComponentProps, AppComponentStates> {
-    /** Interval for token expire observation. */
-    private tokenObserver: NodeJS.Timer | number = null;
     constructor(props: AppComponentProps) {
         super(props);
         this.saveApplocaleData = this.saveApplocaleData.bind(this);
@@ -81,74 +64,48 @@ class App extends React.Component<AppComponentProps, AppComponentStates> {
         initAppDatabaseDeleteIpc();
         initAppDatabaseFindIpc();
         initAppDatabaseUpdateIpc();
-        connectToDashboardIpc();
+        console.log('pat1', window.location.pathname);
     }
 
-    componentDidUpdate(prevProps: AppComponentProps) {
-        // Observe when page is not in sign-in page.
-        if (prevProps.currentRoute !== this.props.currentRoute) {
-            if (this.props.currentRoute.match(/^\/auth/)) {
-                this.unobserveTokenExpire();
-            } else {
-                this.observeTokenExpire();
-            }
-        }
+    componentDidUpdate() {
+        console.log('path2', window.location.pathname);
     }
 
-    componentWillUnmount() {
-        this.unobserveTokenExpire();
-    }
 
     render() {
         return (
             <div className='cbkApp-Container'>
                 {
-                    /* App Navigation Bar */
-                    this.props.isSignedIn ?
-                        <AppBaseNavBar saveLocalCode={this.saveApplocaleData} localCode={this.props.localCode} /> : null
+                    <AppBaseNavBar saveLocalCode={this.saveApplocaleData} localCode={this.props.localCode} />
                 }
 
                 {
-                    /* App Menu Drawer */
-                    this.props.isSignedIn ?
-                        <AppBaseMenuDrawer /> : null
+                    <AppBaseMenuDrawer />
                 }
 
                 {/* App Body Contents */}
-                <div className={'cbkApp-Body' + (
-                    !this.props.isSignedIn ?
-                        ' cbkApp-Body-SignIn' : ''
-                )}>
+                <div className={'cbkApp-Body' + (' cbkApp-Body-SignIn')}>
                     <Switch>
-                        <ProtectedRoute
+                        <Route
                             path='/'
                             component={AsyncHomeComponent}
-                            authToken={this.props.userToken}
                             exact
                         />
                         <Route
-                            path='/auth'
-                            component={AsyncAuthComponent}
-                        />
-                        <ProtectedRoute
                             path='/asset'
                             component={AsyncAssetComponent}
-                            authToken={this.props.userToken}
                         />
-                        <ProtectedRoute
+                        <Route
                             path='/presentation'
                             component={AsyncPresentationComponent}
-                            authToken={this.props.userToken}
                         />
-                        <ProtectedRoute
+                        <Route
                             path='/layoutEditor'
                             component={AsyncLayoutEditorComponent}
-                            authToken={this.props.userToken}
                         />
-                        <ProtectedRoute
+                        <Route
                             path='**'
                             component={NotFoundComponent}
-                            authToken={this.props.userToken}
                         />
                     </Switch>
                 </div>
@@ -159,32 +116,6 @@ class App extends React.Component<AppComponentProps, AppComponentStates> {
 
     private saveApplocaleData(translationsData: any) {
         this.props.localeData(translationsData);
-    }
-
-    // =============== Token ===============
-
-    /**
-     * Observe token expire.
-     * If token expired, log-out app and clear token.
-     */
-    private observeTokenExpire() {
-        this.unobserveTokenExpire();
-        this.tokenObserver = setInterval(() => {
-            if (!isTokenValid(this.props.userToken)) {
-                this.props.appSignOut();
-            }
-        }, 10000);  // Check every 10 sec.
-    }
-
-
-    /**
-     * Unobserve token expire.
-     */
-    private unobserveTokenExpire() {
-        if (this.tokenObserver) {
-            clearInterval(this.tokenObserver as NodeJS.Timer);
-            this.tokenObserver = null;
-        }
     }
 
 }

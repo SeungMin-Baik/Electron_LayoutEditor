@@ -10,7 +10,7 @@ import electronConfig from '@app/config/electron-config';
 
 import { getPresentationDesign } from '@app/apis/presentation/presentationApi';
 
-import { createActivateToken, generateFileZip, createRequestToken, createPlaylistData, createScheduleData } from './others';
+import { generateFileZip, createRequestToken, createPlaylistData, createScheduleData } from './others';
 import { result } from 'lodash-es';
 
 const { dialog } = require('electron').remote;
@@ -29,24 +29,24 @@ const successOptions = {
 
 // CONNECT
 
-export function connectToPlayerHttp(playerIp: any, pinCode: any): Promise<void> {
-    const body = {};
-    const userId = store.getState().appAuth.userData.id;
-    const header = {
-        'x-access-token': createActivateToken(pinCode),
-        'dashboard': userId
-    };
+// export function connectToPlayerHttp(playerIp: any, pinCode: any): Promise<void> {
+//     const body = {};
+//     const userId = store.getState().appAuth.userData.id;
+//     const header = {
+//         'x-access-token': createActivateToken(pinCode),
+//         'dashboard': userId
+//     };
 
-    return new Promise((resolve, reject) => {
-        axios.post(`http://${playerIp}:8080/activate`,
-        body,
-            {
-                headers: header,
-            })
-            .then (() => resolve())
-            .catch ( reject );
-    });
-}
+//     return new Promise((resolve, reject) => {
+//         axios.post(`http://${playerIp}:8080/activate`,
+//         body,
+//             {
+//                 headers: header,
+//             })
+//             .then (() => resolve())
+//             .catch ( reject );
+//     });
+// }
 
 export function unconnectToPlayerHttp(playerIp: any, pinCode: any): Promise<void> {
 
@@ -158,54 +158,54 @@ export function ExecuteAssetHttp(playerIp: any, pinCode: any, contentData: any )
 
 // PRESENTATION
 
-export function VerifyDataPresentationHttp(playerIp: any, pinCode: any, contentData: any): Promise<void> {
+// export function VerifyDataPresentationHttp(playerIp: any, pinCode: any, contentData: any): Promise<void> {
 
-    console.log('contentData', contentData);
+    // console.log('contentData', contentData);
 
-    let tmp = contentData.assets;
+    // let tmp = contentData.assets;
 
-    tmp = tmp.concat({
-        fileType: '.pre',
-        id: contentData.id,
-        md5: 'NONE'
-    });
+    // tmp = tmp.concat({
+    //     fileType: '.pre',
+    //     id: contentData.id,
+    //     md5: 'NONE'
+    // });
 
-    let data: any = [];
+    // let data: any = [];
 
-    tmp.map((assets: any) => {
-        data = data.concat({
-            fileType: assets.fileType,
-            id: assets.id,
-            md5: assets.md5
-        });
-    });
+    // tmp.map((assets: any) => {
+    //     data = data.concat({
+    //         fileType: assets.fileType,
+    //         id: assets.id,
+    //         md5: assets.md5
+    //     });
+    // });
 
-    console.log('data', data);
+    // console.log('data', data);
 
-    const userId = store.getState().appAuth.userData.id;
+    // const userId = store.getState().appAuth.userData.id;
 
-    const body = {
-        cmd: 'VERIFY_DATA',
-        data: JSON.stringify(data)
-    };
+    // const body = {
+    //     cmd: 'VERIFY_DATA',
+    //     data: JSON.stringify(data)
+    // };
 
-    const header = {
-        'x-access-token': createRequestToken(pinCode)
-    };
+    // const header = {
+    //     'x-access-token': createRequestToken(pinCode)
+    // };
 
-    return new Promise((resolve, reject) => {
-        axios.post(`http://${playerIp}:8080/request`,
-            body,
-            {
-                headers: header,
-            })
-            .then(res => res.data)
-            .then(res => res.message === 'OK' || 'ok' ? generateFileZip(contentData, playerIp, pinCode, 'PRESENTATION') : console.log('ZIP err'))
-            .then (() => resolve())
-            .catch(() => dialog.showMessageBox(null, errorOptions))
-            .catch ( reject );
-    });
-}
+    // return new Promise((resolve, reject) => {
+    //     axios.post(`http://${playerIp}:8080/request`,
+    //         body,
+    //         {
+    //             headers: header,
+    //         })
+    //         .then(res => res.data)
+    //         .then(res => res.message === 'OK' || 'ok' ? generateFileZip(contentData, playerIp, pinCode, 'PRESENTATION') : console.log('ZIP err'))
+    //         .then (() => resolve())
+    //         .catch(() => dialog.showMessageBox(null, errorOptions))
+    //         .catch ( reject );
+    // });
+// }
 
 export function uploadPresentationZipHttp(binary: any, playerIp: any, pinCode: any, md5: any, contentData: any ): Promise<void> {
 

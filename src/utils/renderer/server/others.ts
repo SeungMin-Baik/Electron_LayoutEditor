@@ -20,104 +20,36 @@ import { getPresentationDesign } from '@app/apis/presentation/presentationApi';
 
 import { InstantMessageDatabaseFindOneReq } from '@app/utils/renderer/initialize/DatabaseReq';
 
-export function createMessageKey() {
-
-    const nowTime = new Date();
-
-    const userId = store.getState().appAuth.userData.id;
-    const getGMT = moment.utc(nowTime).format('YYYYMMDDHH');
-    const key = userId + getGMT;
-    const result = MD5(key);
-
-  return result;
-}
-
-export function createDecryptionKey() {
-
-  let key: any = '';
-
-    const today = new Date();
-    const year = today.getUTCFullYear();
-    let date: any = today.getUTCDate();
-    let month: any = today.getUTCMonth();
-    let hour: any = today.getUTCHours();
-
-    if ((++month) < 10) {
-        month = '0' + month.toString();
-    }
-
-    if (date < 10) {
-        date = '0' + date.toString();
-    }
-
-    if (hour < 10) {
-        hour = '0' + hour.toString();
-    }
-
-    key = key.concat(year.toString(), month.toString(), date.toString(), hour.toString(), month.toString(), year.toString());
-
-  return key;
-}
-
-export function createActivateToken(pinCode: any) {
-
-    let key: any = '';
-
-    const today = new Date();
-    const year = today.getUTCFullYear();
-    let date: any = today.getUTCDate();
-    let month: any = today.getUTCMonth();
-    let hour: any = today.getUTCHours();
-
-    if ((++month) < 10) {
-        month = '0' + month.toString();
-    }
-
-    if (date < 10) {
-        date = '0' + date.toString();
-    }
-
-    if (hour < 10) {
-        hour = '0' + hour.toString();
-    }
-
-  key = key.concat(year.toString(), month.toString(), date.toString(), hour.toString());
-  // const resultKey = 'CUBLICKproduct01' + `${pinCode}` + key;
-  const resultKey = 'CUBLICKproduct01' + `${pinCode}`;
-  const result = MD5(resultKey);
-
-  return result;
-}
 
 export function createRequestToken(pinCode: any) {
 
-  const userId = store.getState().appAuth.userData.id;
-  let key: any = '';
+//   const userId = store.getState().appAuth.userData.id;
+//   let key: any = '';
 
-  const today = new Date();
-  const year = today.getUTCFullYear();
-  let date: any = today.getUTCDate();
-  let month: any = today.getUTCMonth();
-  let hour: any = today.getUTCHours();
+//   const today = new Date();
+//   const year = today.getUTCFullYear();
+//   let date: any = today.getUTCDate();
+//   let month: any = today.getUTCMonth();
+//   let hour: any = today.getUTCHours();
 
-  if ((++month) < 10) {
-      month = '0' + month.toString();
-  }
+//   if ((++month) < 10) {
+//       month = '0' + month.toString();
+//   }
 
-  if (date < 10) {
-      date = '0' + date.toString();
-  }
+//   if (date < 10) {
+//       date = '0' + date.toString();
+//   }
 
-  if (hour < 10) {
-      hour = '0' + hour.toString();
-  }
+//   if (hour < 10) {
+//       hour = '0' + hour.toString();
+//   }
 
-key = key.concat(year.toString(), month.toString(), date.toString(), hour.toString());
-// const resultKey = 'CUBLICKproduct01' + userId + `${pinCode}` + key;
-const resultKey = 'CUBLICKproduct01' + userId + `${pinCode}`;
-const result = MD5(resultKey);
+// key = key.concat(year.toString(), month.toString(), date.toString(), hour.toString());
+// // const resultKey = 'CUBLICKproduct01' + userId + `${pinCode}` + key;
+// const resultKey = 'CUBLICKproduct01' + userId + `${pinCode}`;
+// const result = MD5(resultKey);
 
-return result;
+// return result;
 }
 
 export function createPlaylistData(contentData: any): Promise<void> {

@@ -54,23 +54,6 @@ export function initAppMediaFiles(): Promise<void> {
                 });
             });
 
-            // Write thumbnail
-
-            ipcMain.on('AppWidget-Thumbnail-Write', async (event: any, url: string, id: string) => {
-                await writeWidgetAsThumbnail(event, url, id)
-                .then(() => {
-                    console.log('Thumbnail-Write success');
-                    setTimeout(() => {
-                        imageThumbnail(event, config.APP.DIR_PATH.WIDGET_PATH + '/' + id, id )
-                            .then(() => unlinkFile(id, config.APP.DIR_PATH.WIDGET_PATH));
-                    }, 1000);
-                })
-                .catch(() => {
-                    console.log('Thumbnail-Write err');
-                });
-            });
-
-
 
             ipcMain.on('AppAsset-Thumbnail-Write', async (event: any, url: string, id: string) => {
                 await writeAssetAsThumbnail(event, url, id)
@@ -157,21 +140,6 @@ export function initAppMediaThumbnails(): Promise<void> {
                 }
 
             });
-
-            // Unlink media file.
-            // ipcMain.on('AppDisplayer-Asset-Unlink', async (event: any, id: string, localPath: string) => {
-            //     await unlinkFile(id, localPath)
-            //     .then(() => {
-            //         event.sender.send('AppDisplayer-Asset-Unlink-reply', {
-            //             success: true
-            //         });
-            //     })
-            //     .catch(() => {
-            //         event.sender.send('AppDisplayer-Asset-Unlink-reply', {
-            //             success: false
-            //         });
-            //     });
-            // });
 
             resolve();
         } catch (err) {

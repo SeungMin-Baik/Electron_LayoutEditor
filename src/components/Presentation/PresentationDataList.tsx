@@ -22,8 +22,6 @@ import Fab from '@material-ui/core/Fab';
 
 import { APIList, APIListParams } from '@app/apis';
 import { PresentationDatabaseFindAllReq, ServerPresentationDataInsertReq, PresentationDatabaseDeletetReq } from '@app/utils/renderer/initialize/DatabaseReq';
-import { writeAssetAsThumbnail, writePresentationAsThumbnail } from '@app/utils/renderer/fileManager/writeFile';
-import { writeMediaAsFile } from '@app/utils/renderer/fileManager/writeFile';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -510,7 +508,7 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
                     await apiRes.data.map(async (imgData: any) => {
                         // console.log(imgData);
                         thumData = thumData.concat({
-                            img: config.EXTERNAL.CUBLICK.PRESENTATION.THUMBNAIL(imgData.id, store.getState().appAuth.token),
+                            // img: config.EXTERNAL.CUBLICK.PRESENTATION.THUMBNAIL(imgData.id, store.getState().appAuth.token),
                             title: imgData.name,
                             author: imgData.owner.displayName,
                             id: imgData.id,

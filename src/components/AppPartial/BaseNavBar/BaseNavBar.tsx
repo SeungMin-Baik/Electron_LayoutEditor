@@ -81,7 +81,7 @@ class BaseNavBar extends React.Component<BaseNavBarProps, BaseNavBarStates> {
                         <div className='cbkApp-NaBar-info-Logout'>
                             <Button style={{textTransform: 'none'}} aria-controls='simple-menu' aria-haspopup='true' onClick={this.handleClick}>
                                 <AccountCircleIcon className='cbkApp-NaBar-info-LogoutIcon' />
-                                <div className='cbkApp-NaBar-info-LogoutText'> {store.getState().appAuth.userData.name}</div>
+                                {/* <div className='cbkApp-NaBar-info-LogoutText'> {store.getState().appAuth.userData.name}</div> */}
                             </Button>
                         </div>
                         <Menu

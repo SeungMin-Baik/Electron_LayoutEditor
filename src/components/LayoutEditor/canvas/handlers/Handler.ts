@@ -853,13 +853,13 @@ class Handler implements HandlerOptions {
 
     public addSvg (obj: any, loadRegion?: boolean) {
         console.log('addSvgObj', obj);
-        let svgSrc = '';
+        const svgSrc = '';
         if (obj.src !== '') {
-            if (obj.assetid) {
-                svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.assetid}/data?access_token=${store.getState().appAuth.token}`;
-            } else {
-                svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.id}/data?access_token=${store.getState().appAuth.token}`;
-            }
+            // if (obj.assetid) {
+            //     svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.assetid}/data?access_token=${store.getState().appAuth.token}`;
+            // } else {
+            //     svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.id}/data?access_token=${store.getState().appAuth.token}`;
+            // }
 
             fabric.loadSVGFromURL(svgSrc, (objects, options) => {
                 const svgObj: any = fabric.util.groupSVGElements(objects, options);

@@ -6,8 +6,8 @@ import {  PresentationDatabaseFindOneReq } from '@app/utils/renderer/initialize/
 
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 import Button from '@material-ui/core/Button';
-import { CublickParser } from '@cublick/parser';
-import { CublickRenderer } from '@cublick/renderer';
+// import { CublickParser } from '@cublick/parser';
+// import { CublickRenderer } from '@cublick/renderer';
 import Grow from '@material-ui/core/Grow';
 import { push } from 'connected-react-router';
 
@@ -27,7 +27,7 @@ type PresentationPreviewDialogState = {
 };
 
 class PresentationPreviewDialog extends React.Component<PresentationPreviewDialogProps, PresentationPreviewDialogState> {
-    private mainRender: CublickRenderer;
+    // private mainRender: CublickRenderer;
     constructor(props: PresentationPreviewDialogProps) {
         super(props);
         this.state = {

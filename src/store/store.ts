@@ -4,7 +4,6 @@ import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 
 import rootReducer from './root-reducer';
-import rootSaga from './root-saga';
 import {
     appAuthStateMiddleware,
     composeEnhancers,
@@ -26,6 +25,5 @@ const store = createStore(
     )
 );
 
-sagaMiddleware.run(rootSaga);
 
 export default store;

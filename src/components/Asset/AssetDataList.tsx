@@ -24,7 +24,6 @@ import Fab from '@material-ui/core/Fab';
 import AssetUploadDialog from './AssetUploadDialog';
 
 import { AssetDatabaseFindAllReq, ServerAssetDataInsertReq, AssetDatabaseDeletetReq } from '@app/utils/renderer/initialize/DatabaseReq';
-import { writeMediaAsFile } from '@app/utils/renderer/fileManager/writeFile';
 import { getThumbnailtReq } from '@app/utils/renderer/initialize/getThumbnailReq';
 import electronConfig from '@app/config/electron-config';
 
@@ -552,7 +551,7 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         if (!this.props.isSelect) {
             getAsset(this.waitConfirmData.id)
                 // .then(res => console.log(res))
-                .then(res => { ServerAssetDataInsertReq(res), writeMediaAsFile('ASSET', res); })
+                // .then(res => { ServerAssetDataInsertReq(res), writeMediaAsFile('ASSET', res); })
                 .then(() => { this.findThumbnail(); this.findData(); })
                 .catch((err: Error) => {
                     console.log('write Asset err');
@@ -606,7 +605,7 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
 
                     await apiRes.data.map(async (imgData: any) => {
                         imageData = imageData.concat({
-                            img: config.EXTERNAL.CUBLICK.ASSET.THUMBNAIL(imgData.id, store.getState().appAuth.token),
+                            // img: config.EXTERNAL.CUBLICK.ASSET.THUMBNAIL(imgData.id, store.getState().appAuth.token),
                             title: imgData.name,
                             author: imgData.owner.displayName,
                             id: imgData.id,

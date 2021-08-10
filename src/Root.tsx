@@ -12,11 +12,8 @@ import * as enLocaleData from 'react-intl/locale-data/en';
 import * as koLocaleData from 'react-intl/locale-data/ko';
 
 // App component and style
-import App from './components/AppContainer';
+import App from './components/App';
 import './stylesheets/main.scss';
-import SignIn from './components/Auth/SignIn/SignIn';
-import { threadId } from 'worker_threads';
-import { path } from 'animejs';
 
 
 /** State of `Root` component. */
@@ -35,17 +32,6 @@ class Root extends React.Component<{}, RootComponentState> {
             localeCode: 'en',
             translations: {}
         };
-    }
-
-    componentWillMount() {
-        // // Add locale data to app.
-        // addLocaleData([
-        //     ...enLocaleData,
-        //     ...koLocaleData
-        // ]);
-
-        // // Apply translations to app.
-        // this.applyTranslations();
     }
 
     componentDidMount() {
@@ -84,13 +70,12 @@ class Root extends React.Component<{}, RootComponentState> {
         // Get current locale code and translation data.
 
         let localeCode = '';
-        // lang ? lang.length > 0 ? localeCode = lang : localeCode = this.getCurrentLocaleCode() : localeCode = this.getCurrentLocaleCode();
+
         if (lang) {
             localeCode = lang;
         } else {
             localeCode = this.getCurrentLocaleCode();
         }
-        // let localeCode = this.getCurrentLocaleCode();
         let translations = await this.fetchLocaleData(localeCode);
 
         // If translation data empty, fallback with English data.

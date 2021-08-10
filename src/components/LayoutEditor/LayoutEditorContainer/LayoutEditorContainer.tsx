@@ -25,7 +25,6 @@ import { Button, Switch } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { LocalPresentationDataInsertReq, PresentationDataUpdateReq } from '@app/utils/renderer/initialize/DatabaseReq';
-import { writeMediaAsFile } from '@app/utils/renderer/fileManager/writeFile';
 import { writeLocalPresentationAsThumbnail } from '@app/utils/renderer/fileManager/writeFile';
 import { fabric } from 'fabric';
 import * as moment from 'moment';

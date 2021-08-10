@@ -8,7 +8,6 @@ import {
     findOneAssetInDB,
     findAllAssetInDB,
     findAllPresentationInDB,
-    insertServerPresentationDataInDB,
     insertLocalPresentationDataInDB,
     updateScheduleInDB,
     deletePresentationDataInDB,
@@ -85,19 +84,6 @@ export function initAppDatabaseInsertIpc(): Promise<void> {
                     });
             });
 
-            // PRESENTATION
-
-            ipcRenderer.on('Presentation-DataBase-InsertServerData', (event: any, presentation: any) => {
-                insertServerPresentationDataInDB(event, presentation)
-                    .then(() => {
-                        console.log('insert presentationDB success');
-                        dialog.showMessageBox(null, downSuccessOptions);
-                    })
-                    .catch(() => {
-                        console.log('insert presentationDB err');
-                        dialog.showMessageBox(null, errorOptions);
-                    });
-            });
 
             ipcRenderer.on('Presentation-DataBase-InsertLocalData', (event: any, presentation: any) => {
                 insertLocalPresentationDataInDB(event, presentation)
