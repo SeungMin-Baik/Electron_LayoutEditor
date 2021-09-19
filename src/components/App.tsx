@@ -74,7 +74,7 @@ class App extends React.Component<AppComponentProps, AppComponentStates> {
 
     render() {
         return (
-            <div className='cbkApp-Container'>
+            <div className='LayoutEditor-Container'>
                 {
                     <AppBaseNavBar saveLocalCode={this.saveApplocaleData} localCode={this.props.localCode} />
                 }
@@ -84,7 +84,7 @@ class App extends React.Component<AppComponentProps, AppComponentStates> {
                 }
 
                 {/* App Body Contents */}
-                <div className={'cbkApp-Body' + (' cbkApp-Body-SignIn')}>
+                <div className='LayoutEditor-Body'>
                     <Switch>
                         <Route
                             path='/'

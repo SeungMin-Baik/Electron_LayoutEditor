@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router';
 
 import HomeInfo from './Info/HomeInfo';
 
-
+import './Home.scss';
 
 type HometStates = { };
 
@@ -14,7 +14,7 @@ class Home extends React.Component<{}, HometStates> {
 
     render() {
         return (
-            <div>
+            <div className='LayoutEditor-Home'>
                 <Switch>
                     <Route
                         path='/'

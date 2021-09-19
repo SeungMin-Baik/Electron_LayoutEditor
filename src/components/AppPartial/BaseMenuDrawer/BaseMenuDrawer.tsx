@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import { RouteComponentProps } from 'react-router-dom';
 
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDesktop } from '@fortawesome/pro-solid-svg-icons/faDesktop';
-import { faList } from '@fortawesome/pro-regular-svg-icons/faList';
-import { faClock } from '@fortawesome/pro-regular-svg-icons/faClock';
-import { faBars } from '@fortawesome/pro-solid-svg-icons/faBars';
-import { faCommentAltLines } from '@fortawesome/pro-regular-svg-icons/faCommentAltLines';
-import { faShoppingCart } from '@fortawesome/pro-regular-svg-icons/faShoppingCart';
 import { faFolders } from '@fortawesome/pro-regular-svg-icons/faFolders';
 import { faIcons } from '@fortawesome/pro-regular-svg-icons/faIcons';
 import { faEdit } from '@fortawesome/pro-regular-svg-icons/faEdit';
@@ -24,10 +17,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 // Stylesheet
 import './BaseMenuDrawer.scss';
-
-// Images
-import * as MenuLogo from '../../../../public/media/logo.white.png';
-import store from '@app/store';
 
 
 /** Props of `BaseMenuDrawer` component. */
@@ -67,7 +56,6 @@ class BaseMenuDrawer extends React.Component<BaseMenuDrawerProps, BaseMenuDrawer
     ];
     constructor(props: BaseMenuDrawerProps & InjectedIntlProps) {
         super(props);
-        this.onHandleMenuBar = this.onHandleMenuBar.bind(this);
         this.state = {
             handleMenuBar: true
         };
@@ -123,67 +111,42 @@ class BaseMenuDrawer extends React.Component<BaseMenuDrawerProps, BaseMenuDrawer
             <>
                 {/* Menu */}
                 {
-                    this.state.handleMenuBar ?
-                        <>
-                            <aside className='cbkApp-Menu-Drawer'>
-                                <div className='cbkApp-Menu'>
+                    `/${window.location.pathname.substring(4)}` === '/' ?
+                        null
+                    :
+                    <>
+                        <aside className='LayoutEditor-Menu-Drawer'>
+                            <div className='LayoutEditor-Menu'>
 
-                                    {/* Menu - Brand logo */}
-                                    <div className='menu-brand'>
-                                        <Link to='/'>
-                                            <span className='brand-logo'>
-                                                <FontAwesomeIcon icon={faHome} />
-                                            </span>
-                                        </Link>
-                                    </div>
-
-                                    {/* Menu - List */}
-                                    <div className='menu-list-wrap'>
-                                        {BasemenuDrawerList}
-                                    </div>
-
+                                {/* Menu - Brand logo */}
+                                <div className='menu-brand'>
+                                    <Link to='/'>
+                                        <span className='brand-logo'>
+                                            <FontAwesomeIcon icon={faHome} />
+                                        </span>
+                                    </Link>
                                 </div>
-                            </aside>
 
-                            {/* Menu padding */}
-                            {
-                                `/${window.location.pathname.substring(4)}` !== '/layoutEditor' ?
-                                    <div className='cbkApp-Menu-Drawer-Pad' />
-                                :
-                                    <div className='cbkApp-Menu-Drawer-Pad-Editor' />
-                            }
-
-                        </>
-                        :
-                        <>
-                            <aside className='cbkApp-Menu-Drawer-Reduction'>
-                                <div className='cbkApp-Menu'>
-
-                                    {/* Menu - Brand logo */}
-                                    <div className='menu-brand'>
-                                        <span className='Bars' onClick={this.onHandleMenuBar}> <FontAwesomeIcon icon={faBars} /> </span>
-                                    </div>
-
-                                    {/* Menu - List */}
-                                    <div className='menu-list-wrap'>
-                                        {BasemenuDrawerList}
-                                    </div>
-
+                                {/* Menu - List */}
+                                <div className='menu-list-wrap'>
+                                    {BasemenuDrawerList}
                                 </div>
-                            </aside>
 
-                            {/* Menu padding */}
-                            <div className='cbkApp-Menu-Drawer-Pad-Reduction' />
-                        </>
+                            </div>
+                        </aside>
+
+                        {/* Menu padding */}
+                        {
+                            `/${window.location.pathname.substring(4)}` !== '/layoutEditor' ?
+                                <div className='LayoutEditor-Menu-Drawer-Pad' />
+                            :
+                                <div className='LayoutEditor-Menu-Drawer-Pad-Editor' />
+                        }
+
+                    </>
                 }
             </>
         );
-    }
-
-    private onHandleMenuBar() {
-        this.setState({
-            handleMenuBar: !this.state.handleMenuBar
-        });
     }
 }
 

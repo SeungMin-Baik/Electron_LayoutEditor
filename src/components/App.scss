@@ -1,20 +1,16 @@
-.cbkApp-Container {
+.LayoutEditor-Container {
     position: relative;
     display: flex;
     width: 100vw;
     height: 100vh;
 
-    > .cbkApp-Body {
-        overflow: auto;
+    > .LayoutEditor-Body {
+        margin-top: 5vh;
+        overflow: hidden;
         flex: 1 1;
         width: 100%;
-        margin-top: 50px;
-        padding: 10px 10px 0;
-        background: #f2f2f2;
+        background: #ffffff;
 
-        &.cbkApp-Body-SignIn {
-            margin-top: 0;
-        }
     }
 }
 

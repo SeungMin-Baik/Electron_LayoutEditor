@@ -15,6 +15,7 @@ declare module '*.png' {
     export = fileName;
 }
 
+
 declare module '*.gif' {
     const fileName: string;
     export = fileName;

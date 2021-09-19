@@ -28,11 +28,20 @@ class Alert extends React.Component<AlertProps, AlertStates> {
     }
 
     render() {
-        this.props.type === 'SAVE_SUCCESS' ? this.message = <FormattedMessage id='app-showmessagebox.save_success' defaultMessage='Saved successfully.'/>
-        : this.props.type === 'SAVE_FAIL' ? this.message = <FormattedMessage id='app-showmessagebox.save_fail' defaultMessage='Save failed.'/>
-        : this.props.type === 'EXIT_OR_FAIL' ? this.message = <FormattedMessage id='app-showmessagebox.exit_or_fail' defaultMessage='The file already exists or the download failed.'/>
-        : this.props.type === 'TOO_BIG' ? this.message = <FormattedMessage id='app-showmessagebox.too_big' defaultMessage='The size of the data is too large.'/>
-        : this.props.type === 'SCHEDULE_NAME_ERROR' ? this.message = <FormattedMessage id='app-showmessagebox.schedule_name_error' defaultMessage='Please enter the schedule name.'/>
+        this.props.type === 'SAVE_SUCCESS' ?
+            this.message = <FormattedMessage id='app-showMessageBox.save_success' defaultMessage='Saved successfully.'/>
+        :
+        this.props.type === 'SAVE_FAIL' ?
+            this.message = <FormattedMessage id='app-showMessageBox.save_fail' defaultMessage='Save failed.'/>
+        :
+        this.props.type === 'EXIT_OR_FAIL' ?
+            this.message = <FormattedMessage id='app-showMessageBox.exit_or_fail' defaultMessage='The file already exists or the download failed.'/>
+        :
+        this.props.type === 'TOO_BIG' ?
+            this.message = <FormattedMessage id='app-showMessageBox.too_big' defaultMessage='The size of the data is too large.'/>
+        :
+        this.props.type === 'SCHEDULE_NAME_ERROR' ?
+            this.message = <FormattedMessage id='app-showMessageBox.schedule_name_error' defaultMessage='Please enter the schedule name.'/>
         : '';
         return (
             <div>
@@ -40,7 +49,7 @@ class Alert extends React.Component<AlertProps, AlertStates> {
                     open={true}
                     aria-labelledby='alert-dialog-title'
                 >
-                    <DialogTitle className='cbkApp-Alert-Title' id='alert-dialog-title'>{this.message}</DialogTitle>
+                    <DialogTitle className='LayoutEditor-Alert-Title' id='alert-dialog-title'>{this.message}</DialogTitle>
 
                     <DialogActions>
                         <Button onClick={() => this.props.isOpen(false)} color='primary' autoFocus>

@@ -28,11 +28,17 @@ class Confirm extends React.Component<ConfirmProps, ConfirmStates> {
     }
 
     render() {
-        this.props.type === 'DELETE' ? this.message = <FormattedMessage id='app-showmessagebox.delete' defaultMessage='do you want to delete?' />
-        : this.props.type === 'UPDATE' ? this.message = <FormattedMessage id='app-showmessagebox.update' defaultMessage='Would you like to fix it?'/>
-        : this.props.type === 'SAVE' ? this.message = <FormattedMessage id='app-showmessagebox.save' defaultMessage='do you want to save?'/>
-        : this.props.type === 'DOWNLOAD' ? this.message = <FormattedMessage id='app-showmessagebox.download' defaultMessage='do you want to download'/>
-        : this.props.type === 'OUTEDITOR' ? this.message = <FormattedMessage id='app-showmessagebox.out' defaultMessage='do you want to go out?'/>
+        this.props.type === 'DELETE' ?
+            this.message = <FormattedMessage id='app-showMessageBox.delete' defaultMessage='Do you want to delete?' />
+        :
+        this.props.type === 'UPDATE' ?
+            this.message = <FormattedMessage id='app-showMessageBox.update' defaultMessage='Would you like to fix it?'/>
+        :
+        this.props.type === 'SAVE' ?
+            this.message = <FormattedMessage id='app-showMessageBox.save' defaultMessage='Do you want to save?'/>
+        :
+        this.props.type === 'OUTEDITOR' ?
+            this.message = <FormattedMessage id='app-showMessageBox.out' defaultMessage='Do you want to go out?'/>
         : '';
         return (
             <div>
@@ -40,19 +46,19 @@ class Confirm extends React.Component<ConfirmProps, ConfirmStates> {
                     open={true}
                     aria-labelledby='alert-dialog-title'
                 >
-                    <DialogTitle className='cbkApp-Confirm-Title' id='alert-dialog-title'>{this.message}</DialogTitle>
+                    <DialogTitle className='LayoutEditor-Confirm-Title' id='alert-dialog-title'>{this.message}</DialogTitle>
 
 
                     <DialogActions>
                         <Button onClick={() => this.props.isOpen(false, true)} color='primary'>
                             <FormattedMessage
-                                id='app-showmessagebox.yes'
+                                id='app-showMessageBox.yes'
                                 defaultMessage='YES'
                             />
                         </Button>
                         <Button onClick={() => this.props.isOpen(false, false)} color='primary' autoFocus>
                             <FormattedMessage
-                                id='app-showmessagebox.no'
+                                id='app-showMessageBox.no'
                                 defaultMessage='NO'
                             />
                         </Button>

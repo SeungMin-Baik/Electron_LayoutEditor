@@ -1,19 +1,13 @@
 import * as React from 'react';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
-import { HomeDataList } from '../Info';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Button from '@material-ui/core/Button';
 import { RouteComponentProps } from 'react-router';
-import HomeInfoFoot from './HomeInfoFoot';
-import HomeInfoHead from './HomeInfoHead';
-
-import { getElectronDataPath } from '@app/utils/main/others';
 
 import store from '@app/store';
+import { push } from 'connected-react-router';
+
+import * as Editor from '../../../../public/media/editor.png';
 
 import './HomeInfo.scss';
-import HomeInfoBody from './HomeInfoBody';
 
 type HomeInfoProps = {} & RouteComponentProps;
 
@@ -25,7 +19,6 @@ class HomeInfo extends React.Component<HomeInfoProps, HomeInfotStates> {
     constructor(props: HomeInfoProps) {
         super(props);
         this.state = {
-            cublickStore: []
         };
     }
 
@@ -33,12 +26,31 @@ class HomeInfo extends React.Component<HomeInfoProps, HomeInfotStates> {
 
         return (
         <>
-        <HomeInfoHead />
-        <HomeInfoFoot />
+            <div className='LayoutEditor-HomeInfo'>
+                <div className='LayoutEditor-HomeInfo-Body'>
+                    <div className='HomeInfo-Body-Title'>
+                        <FormattedMessage
+                            id='app-home-body.title'
+                            values={{br: <br/>}}
+                        />
+                    </div>
+
+                    <div className='HomeInfo-Body-Button'>
+                        <button className='Button-Info' onClick={this.LinkToEditor}>
+                        <FormattedMessage
+                            id='app-home-body.startButton'
+                            defaultMessage='Start'
+                        />
+                        </button>
+                    </div>
+                </div>
+            </div>
         </>
-
         );
+    }
 
+    private LinkToEditor = () => {
+        store.dispatch(push(`/layoutEditor`));
     }
 }
 

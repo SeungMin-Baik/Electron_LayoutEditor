@@ -1,25 +1,41 @@
-.cbk-App-Home {
-    display: flex;
-    margin-top: 8vh;
-    max-width: 100vw;
-    max-height: 100vh;
+.LayoutEditor-HomeInfo {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    .LayoutEditor-HomeInfo-Body {
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        text-align: center;
 
-    .RecentWork {
-        margin-left: 3vw;
-        width: 40vw;
-        height: auto;
+        .HomeInfo-Body-Title {
+            color: black;
+            font-weight: bold;
+            font-size: 3.5em;
+            margin-top: 20vh;
+        }
+
+        .HomeInfo-Body-Button {
+            .Button-Info {
+                margin-top: 5vh;
+                padding: 2vh 7vw;
+                border-radius: 20px;
+                border: none;
+                font-size: 1em;
+                font-weight: bold;
+                color: #00ffba;
+                text-decoration: none;
+                box-shadow:
+                0 1px 3px 0 rgba(0, 0, 0, 0.2),
+                0 1px 1px 0 rgba(0, 0, 0, 0.14),
+                0 2px 1px -1px rgba(0, 0, 0, 0.12);
+                background: #000000;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.9;
+                }
+            }
+        }
     }
-
-    .StorageHome {
-        background: #fff;
-        border-radius: 4px;
-        box-shadow:
-            0 1px 3px 0 rgba(0, 0, 0, 0.2),
-            0 1px 1px 0 rgba(0, 0, 0, 0.14),
-            0 2px 1px -1px rgba(0, 0, 0, 0.12);
-        padding-top: 5vh;
-        width: 40vw;
-        height: 42.5vh;
-    }
-
 }
