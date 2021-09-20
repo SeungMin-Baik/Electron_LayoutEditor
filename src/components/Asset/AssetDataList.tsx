@@ -7,6 +7,11 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import InfoIcon from '@material-ui/icons/Info';
 import { Tooltip } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+
+import Fab from '@material-ui/core/Fab';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/pro-solid-svg-icons/faTrashAlt';
 
 import AssetUploadDialog from './Dialog/AssetUploadDialog';
 
@@ -17,7 +22,6 @@ import Confirm from '@app/components/AppPartial/Confirm';
 
 import * as imageLoad from '../../../public/media/image-loading.png';
 
-import config from '@app/config';
 import store from '@app/store';
 import * as fs from 'fs';
 
@@ -26,13 +30,9 @@ import './AssetDataList.scss';
 /** States of `DataListTable` component. */
 type AssetDataListProps = {
     filters?: {
-        key: string;
-        operator: '=';
         value: string;
     };
-    saveSelectMedia: Function;
     isEditor?: boolean
-    isSelect: boolean;
     onDragStart?: Function;
     onDragEnd?: Function;
 } & InjectedIntlProps;
@@ -42,16 +42,14 @@ type AssetDataListStates = {
     isVisible: boolean;
     findClientData: any;
     findThumbnails: Array<any>;
-    selectedImg: string;
     openDelConfirm: boolean;
+    saveTitleValue: string;
 };
 
-// Asset의 이미지, 동영상 등의 Grid List를 출력해주는 컴포넌트
 class AssetDataList extends React.Component<AssetDataListProps, AssetDataListStates> {
     private waitConfirmData: any = '';
     constructor(props: AssetDataListProps) {
         super(props);
-        this.ClickClientImg = this.ClickClientImg.bind(this);
         this.onDialog = this.onDialog.bind(this);
         this.findData = this.findData.bind(this);
         this.findThumbnail = this.findThumbnail.bind(this);
@@ -59,8 +57,8 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
             isVisible: false,
             findClientData: [],
             findThumbnails: [],
-            selectedImg: '',
-            openDelConfirm: false
+            openDelConfirm: false,
+            saveTitleValue: ''
         };
     }
 
@@ -75,11 +73,11 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         const { formatMessage } = this.props.intl;
 
         const body = (
-                <div className={this.props.isEditor ? 'cbkApp-ImageDataListTable-editor' : 'cbkApp-ImageDataListTable'}>
+                <div className={this.props.isEditor ? 'LayoutEditor-AssetDataListTable-editor' : 'LayoutEditor-AssetDataListTable'}>
                     <GridList cols={this.props.isEditor ? 4 : 6} className='gridList'>
                         {
                             this.state.findClientData.length > 0 ?
-                            this.state.findClientData.map(ClientData => (
+                            this.state.findClientData.filter(ClientData => ClientData.FileData.name.indexOf(this.state.saveTitleValue) !== -1).map(ClientData => (
                                 <Tooltip title={ClientData.FileData.name} placement='top' disableHoverListener={this.props.isEditor ? false : true}>
                                     <GridListTile
                                         key={ClientData._id}
@@ -87,6 +85,17 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
                                         onDragStart={(e) => this.props.onDragStart(e, ClientData)}
                                         onDragEnd={(e) => this.props.onDragEnd(e, ClientData)}
                                     >
+                                        {
+                                            !this.props.isEditor ?
+                                                <div className='actionSection'>
+                                                    <div className='deleteButton' onClick={() => this.handleDelConfirm(true, 'INIT', ClientData._id)}>
+                                                        <Fab variant='round' size='small' className='deleteButton-fab'>
+                                                            <FontAwesomeIcon className='deleteButton-info' icon={faTrashAlt} />
+                                                        </Fab>
+                                                    </div>
+                                                </div>
+                                            : null
+                                        }
                                         <div className='Thumbnail-Client'>
                                             <img
                                                 data-all={JSON.stringify({
@@ -107,14 +116,13 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
                                                     this.state.findThumbnails.indexOf(ClientData._id + '_thumb.png') === - 1 ?
                                                     imageLoad :
                                                     electronConfig.APP.DIR_PATH.THUMBNAIL_PATH + '/' + this.state.findThumbnails.filter(x => x === (ClientData._id + '_thumb.png'))
-                                                } alt={ClientData.FileData.name} onClick={this.ClickClientImg} />
+                                                } alt={ClientData.FileData.name} />
                                         </div>
                                         {
                                             !this.props.isEditor ?
                                                 <GridListTileBar
-                                                    className={this.state.selectedImg === ClientData._id ? 'selected' : ''}
                                                     title={ClientData.FileData.name}
-                                                    subtitle={<span>by: Client </span>}
+                                                    subtitle={<span>by: Guest </span>}
                                                     actionIcon={
                                                         <IconButton aria-label={`info about ${ClientData.FileData.name}`} className='icon'>
                                                             <InfoIcon />
@@ -127,7 +135,7 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
                                 </Tooltip>
                             ))
                             :
-                                <div className='ImageDataListTable-nullData'>
+                                <div className='AssetDataListTable-nullData'>
                                     <FormattedMessage
                                         id='app-common.noData'
                                         defaultMessage='No Data'
@@ -161,13 +169,29 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
                     <>
                         {
                             !this.props.isEditor ?
-                                <div className='cbkApp-upload-button'>
-                                    <Button variant='outlined' size='large' onClick={e => this.onDialog(true)}>
-                                        <FormattedMessage
-                                            id='app-asset-upload'
-                                            defaultMessage='UPLOAD'
-                                        />
-                                    </Button>
+                                <div className='LayoutEditor-Head'>
+                                    <div className='LayoutEditor-Head-Search'>
+                                        <TextField
+                                            className='Search-Info'
+                                            onChange={this.handleSearchValue}
+                                            autoComplete='off'
+                                            label={
+                                                formatMessage({
+                                                    id: 'app-common.search',
+                                                    defaultMessage: 'Search'
+                                                })
+                                            }
+                                        >
+                                        </TextField>
+                                    </div>
+                                    <div className='LayoutEditor-Head-Upload'>
+                                        <button className='Upload-Button' onClick={e => this.onDialog(true)}>
+                                            <FormattedMessage
+                                                id='app-asset-upload'
+                                                defaultMessage='Upload'
+                                            />
+                                        </button>
+                                    </div>
                                 </div>
                             : null
                         }
@@ -180,18 +204,8 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         );
     }
 
-    private ClickClientImg(e: React.SyntheticEvent) {
-        const Clientdata = JSON.parse((e.target as any).dataset.all);
-        console.log(Clientdata);
-        if (this.props.isSelect === true) {
-            this.setState({ selectedImg: Clientdata.id });
-        }
 
-        this.props.saveSelectMedia(Clientdata);
-    }
-
-
-    private onDialog(isVisible: boolean, refresh?: boolean) {
+    private onDialog = (isVisible: boolean, refresh?: boolean) => {
         if (refresh) {
             this.findData();
             this.findThumbnail();
@@ -199,7 +213,7 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         this.setState({ isVisible });
     }
 
-    private findData() {
+    private findData = () => {
         AssetDatabaseFindAllReq();
         setTimeout(() => {
             const clientData = [];
@@ -221,7 +235,7 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         }, 100);
     }
 
-    private findThumbnail() {
+    private findThumbnail = () => {
         let thumbfiles = [];
         try {
             thumbfiles = fs.readdirSync(electronConfig.APP.DIR_PATH.THUMBNAIL_PATH);
@@ -246,13 +260,20 @@ class AssetDataList extends React.Component<AssetDataListProps, AssetDataListSta
         });
     }
 
-    private deleteAssetMessage() {
+    private deleteAssetMessage = () => {
         AssetDatabaseDeletetReq(this.waitConfirmData);
         setTimeout(() => {
             this.setState({
                 findClientData: this.state.findClientData.filter(x => x._id !== this.waitConfirmData)
             });
         }, 100);
+    }
+
+    /* For Search */
+    private handleSearchValue = (e: React.ChangeEvent<{ value: any }>) => {
+        this.setState({
+            saveTitleValue: e.target.value
+        });
     }
 }
 

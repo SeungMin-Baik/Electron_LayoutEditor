@@ -2,9 +2,7 @@ import { remote, ipcRenderer } from 'electron';
 import * as Datastore from 'nedb';
 import * as moment from 'moment';
 import electronConfig from '@app/config/electron-config';
-import config from '@app/config/cublick-apis';
 import store from '@app/store';
-import { propertiesToInclude } from '@app/components/LayoutEditor/canvas/constants/defaults';
 
 /**
  * insert asset value to database

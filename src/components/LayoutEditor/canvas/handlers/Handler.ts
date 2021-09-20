@@ -2,7 +2,6 @@ import { fabric } from 'fabric';
 import warning from 'warning';
 import { v4 } from 'uuid';
 import { union } from 'lodash';
-import config from '@app/config';
 import store from '@app/store';
 import electronConfig from '@app/config/electron-config';
 

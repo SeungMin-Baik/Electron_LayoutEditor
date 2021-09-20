@@ -3,7 +3,6 @@
   "app-home-body.startButton": "Start",
 
 
-
   "app-common.create": "Create",
   "app-common.apply": "Apply",
   "app-common.close": "Close",
@@ -41,11 +40,11 @@
 
   "app-showMessageBox.yes": "YES",
   "app-showMessageBox.no": "NO",
-  "app-showMessageBox.delete": "do you want to delete?",
-  "app-showMessageBox.change": "Would you like to fix it?",
-  "app-showMessageBox.save":  "do you want to save?",
-  "app-showMessageBox.download": "do you want to download?",
-  "app-showMessageBox.out": "do you want to go out?",
+  "app-showMessageBox.delete": "Do you want to delete?",
+  "app-showMessageBox.update": "Would you like to fix it?",
+  "app-showMessageBox.save":  "Do you want to save?",
+  "app-showMessageBox.download": "Do you want to download?",
+  "app-showMessageBox.out": "Do you want to go out?",
 
   "app-partial.datalist.of": "of",
   "app-partial.datalist.perPage": "Items per page",
@@ -77,7 +76,7 @@
   "app-asset.send_device": "Transmittable device",
   "app-asset.upload": "Upload Asset",
   "app-asset.send": "Send Asset",
-  "app-asset-upload": "UPLOAD",
+  "app-asset-upload": "Upload",
 
   "app-presentation.send": "Send Presentation ",
   "app-presentation.preview.name": "Name",
@@ -95,6 +94,8 @@
   "app-LayoutEditor.icon-backwards": "backwards",
   "app-LayoutEditor.icon-rotate-left": "rotate 90 degrees to the left",
   "app-LayoutEditor.icon-rotate-right": "rotate 90 degrees to the right",
+  "app-LayoutEditor.type.landscape": "Landscape Mode",
+  "app-LayoutEditor.type.portrait": "Portrait Mode",
 
   "app-Enter.onlyNumber": "Enter only numbers (more than 10 seconds)",
   "app-Enter.Message": "Message (4~128 characters)"

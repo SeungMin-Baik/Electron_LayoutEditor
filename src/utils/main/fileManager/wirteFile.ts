@@ -15,8 +15,6 @@ export function writeMediaAsFile(event: any, media: any, type: string): Promise<
     return new Promise<void>((resolve, reject) => {
         const promises: Promise<any>[] = [];
 
-        console.log('media', media);
-
         const task = (media: any) => new Promise<void>((_resolve, _reject) => {
             let filePath = '';
             // LOCAL FILE PATH
@@ -29,9 +27,6 @@ export function writeMediaAsFile(event: any, media: any, type: string): Promise<
                     filePath = path.join(config.APP.DIR_PATH.FILE_PATH, media.id);
                     break;
 
-                case 'WIDGET':
-                    filePath = path.join(config.APP.DIR_PATH.WIDGET_PATH, media.id);
-                    break;
             }
 
             // Create asset file write stream.

@@ -235,11 +235,6 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
             case 'Template':
                 return (
                     <PresentationDataList
-                        filter={{
-                            key: 'owner',
-                            operator: '=',
-                            value: 'mine'
-                        }}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
                         onDragEnd={(e, item) => this.events.onDragEnd(e)}
@@ -250,12 +245,8 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                 return (
                     <ImageDataList
                         filters={{
-                            key: 'mimeType',
-                            operator: '=',
                             value: 'IMAGE'
                         }}
-                        saveSelectMedia={() => ''}
-                        isSelect={false}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
                         onDragEnd={(e, item) => this.events.onDragEnd(e)}
@@ -266,12 +257,8 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                 return (
                     <ImageDataList
                         filters={{
-                            key: 'mimeType',
-                            operator: '=',
                             value: 'VIDEO'
                         }}
-                        saveSelectMedia={() => ''}
-                        isSelect={false}
                         isEditor={true}
                         onDragStart={(e, item) => this.events.onDragStart(e, item)}
                         onDragEnd={(e, item) => this.events.onDragEnd(e)}

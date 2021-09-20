@@ -50,8 +50,8 @@ class BaseNavBar extends React.Component<BaseNavBarProps, BaseNavBarStates> {
 
         return (
             <nav className='LayoutEditor-NavBar' style={this.props.style}>
-                <div className='LayoutEditor-NavBar-content'>
-                    <div className='LayoutEditor-NavBar-info'>
+                <div className='LayoutEditor-NavBar-Content'>
+                    <div className='LayoutEditor-NavBar-Info'>
                         <div className='LayoutEditor-Language-Change'>
                             <LanguageIcon className='LayoutEditor-Language-Change-Icon'/>
                             <FormControl className='select-size'>

@@ -37,10 +37,10 @@ class HomeInfo extends React.Component<HomeInfoProps, HomeInfotStates> {
 
                     <div className='HomeInfo-Body-Button'>
                         <button className='Button-Info' onClick={this.LinkToEditor}>
-                        <FormattedMessage
-                            id='app-home-body.startButton'
-                            defaultMessage='Start'
-                        />
+                            <FormattedMessage
+                                id='app-home-body.startButton'
+                                defaultMessage='Start'
+                            />
                         </button>
                     </div>
                 </div>

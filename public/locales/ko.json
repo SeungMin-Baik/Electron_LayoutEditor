@@ -43,7 +43,9 @@
   "app-showMessageBox.update": "수정 하겠습니까?",
   "app-showMessageBox.save":  "저장 하시겠습니까?",
   "app-showMessageBox.download": "다운로드 하시겠습니까?",
-  "app-showMessageBox.out": "정말로 나가시겠습니까?",
+  "app-showMessageBox.out": "정말로 나가시겠습니까?",  
+  "app-showMessageBox.delete": "삭제 하시겠습니까?",
+
 
   "app-partial.datalist.of": "중",
   "app-partial.datalist.perPage": "페이지 당 갯수",
@@ -90,6 +92,8 @@
   "app-LayoutEditor.icon-backwards": "뒤로 보내기",
   "app-LayoutEditor.icon-rotate-left": "왼쪽으로 90도 회전",
   "app-LayoutEditor.icon-rotate-right": "오른쪽으로 90도 회전",
+  "app-LayoutEditor.type.landscape": "가로 모드",
+  "app-LayoutEditor.type.portrait": "세로 모드",
 
   "app-Enter.onlyNumber": "숫자만 입력 (10초 이상)",
   "app-Enter.Message": "메세지 (4 ~ 128 자)"

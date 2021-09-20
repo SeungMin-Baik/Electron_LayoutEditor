@@ -22,12 +22,9 @@ type AssetUploadDialogStates = {
     selectedFile: any;
 };
 
-// Asset의 media 파일 업로드를 위한 컴포넌트
 class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUploadDialogStates> {
     constructor(props: AssetUploadDialogProps) {
         super(props);
-        this.handleFileInput = this.handleFileInput.bind(this);
-        this.saveFile = this.saveFile.bind(this);
         this.state = {
             selectedFile: {},
         };
@@ -37,21 +34,19 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
     }
 
     componentDidUpdate() {
-        console.log(config.APP.DIR_PATH.FILE_PATH);
-        console.log(this.state.selectedFile);
     }
 
     render() {
         return (
             <>
-                <div className='cbkApp-AssetUploadDialog'>
-                    <div className='AssetUploadDialog-background'></div>
-                    <div className='AssetUploadDialog-content'>
-                        <div className='AssetUploadDialog-content-title'>
+                <div className='LayoutEditor-AssetUploadDialog'>
+                    <div className='AssetUploadDialog-Background'></div>
+                    <div className='AssetUploadDialog-Content'>
+                        <div className='AssetUploadDialog-Content-Title'>
                             <div className='content-title-info'>{this.props.title}</div>
                         </div>
-                        <div className='AssetUploadDialog-content-info'>
-                            <div className='AssetUploadDialog-content-textField'>
+                        <div className='AssetUploadDialog-Content-Info'>
+                            <div className='AssetUploadDialog-Content-TextField'>
                                 <input type='file' name='file' onChange={e => this.handleFileInput(e)} />
                                 {
                                     this.state.selectedFile.name ?
@@ -61,14 +56,23 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
                             </div>
                         </div>
 
-                        <div className='AssetUploadDialog-content-foot'>
-                            <Button variant='contained' color='secondary' className='AssetUploadDialog-foot-save' onClick={this.saveFile}>
-                                <FormattedMessage
-                                    id='app-asset.save'
-                                    defaultMessage='SAVE'
-                                />
-                            </Button>
-                            <Button variant='contained' color='secondary' className='AssetUploadDialog-foot-close' onClick={() => this.props.closeDialog(false, true)}> 닫기 </Button>
+                        <div className='AssetUploadDialog-Content-Foot'>
+                            <div className='AssetUploadDialog-Foot-SaveAndClose'>
+                                <Button variant='contained' onClick={this.saveFile} style={{background: '#00e2a5', color: '#ffffff'}}>
+                                    <FormattedMessage
+                                        id='app-common.save'
+                                        defaultMessage='Save'
+                                    />
+                                </Button>
+                            </div>
+                            <div className='AssetUploadDialog-Foot-SaveAndClose'>
+                                <Button variant='contained' color='secondary' onClick={() => this.props.closeDialog(false, true)}>
+                                    <FormattedMessage
+                                        id='app-common.close'
+                                        defaultMessage='Close'
+                                    />
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,12 +80,11 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
         );
     }
 
-    private handleFileInput(e) {
+    private handleFileInput = (e) => {
         const strArray = e.target.files[0].type.split('/');
         const md5 = require('md5');
 
         const fileType = e.target.files[0].type;
-        // If asset is image then set width, height info
         if (fileType === 'image/png' || fileType === 'image/jpeg' || fileType === 'image/jpg') {
 
             const files = e.target.files[0];
@@ -147,7 +150,7 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
 
     }
 
-    private saveFile() {
+    private saveFile = () => {
         const i = 1;
         const fs = require('fs-extra');
         console.log(this.state.selectedFile);
@@ -162,7 +165,6 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
 
         setTimeout(() => {
             getThumbnailtReq(config.APP.DIR_PATH.FILE_PATH + '/' + this.state.selectedFile.id, this.state.selectedFile);
-            // this.props.closeDialog(false, true);
         }, i * 200);
 
         setTimeout(() => {

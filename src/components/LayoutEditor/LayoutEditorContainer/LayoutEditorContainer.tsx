@@ -128,18 +128,18 @@ const state = {
   ratioValues: ['16:9', '4:3', '1:1'],
   ratioValue: 0.5625,
   info: {
+    name: 'New Template',
+    desc: 'Description',
+    orientation: 'LANDSCAPE',
+    ratio: '16:9',
+    width: 1920,
+    height: 1080
     // name: 'New presentation',
     // desc: 'Description',
-    // orientation: 'LANDSCAPE',
-    // ratio: '16:9',
-    // width: 1920,
-    // height: 1080
-    name: 'New presentation',
-    desc: 'Description',
-    orientation: 'PORTRAIT',
-    ratio: '9:16',
-    width: 1080,
-    height: 1920
+    // orientation: 'PORTRAIT',
+    // ratio: '9:16',
+    // width: 1080,
+    // height: 1920
   }
 };
 
@@ -282,8 +282,8 @@ const LayoutEditorContainer = (props: any) => {
                     </div>
                     <div className='LayoutEditor-InfoContainer-Ratio'>
                       <RadioGroup className='InfoContainer-Ratio-Group' row name='orientation' value={layoutEditorState.info.orientation} onChange={handleOriChange}>
-                        <FormControlLabel className='Ratio-Info' value='LANDSCAPE' control={<Radio />} label={<FormattedMessage id='app-LayoutEditor.type_hori' defaultMessage='horizontal Type'/>} />
-                        <FormControlLabel className='Ratio-Info' value='PORTRAIT' control={<Radio />} label={<FormattedMessage id='app-LayoutEditor.type_ve' defaultMessage='Vertical Type'/>} />
+                        <FormControlLabel className='Ratio-Info' value='LANDSCAPE' control={<Radio />} label={<FormattedMessage id='app-LayoutEditor.type.landscape' defaultMessage='Landscape Mode'/>} />
+                        <FormControlLabel className='Ratio-Info' value='PORTRAIT' control={<Radio />} label={<FormattedMessage id='app-LayoutEditor.type.portrait' defaultMessage='Portrait Mode'/>} />
                       </RadioGroup>
                     </div>
 
@@ -291,8 +291,8 @@ const LayoutEditorContainer = (props: any) => {
                       <div className='LayoutEditor-InfoContainer-Length'>
                           <div className='Length-Head'>
                             <FormattedMessage
-                                id='app-LayoutEditor.hori'
-                                defaultMessage='horizontal'
+                                id='app-LayoutEditor.type.landscape'
+                                defaultMessage='Landscape Mode'
                             />
                           </div>
                           <div className='Length-TextField'>
@@ -303,8 +303,8 @@ const LayoutEditorContainer = (props: any) => {
                       <div className='LayoutEditor-InfoContainer-Length'>
                           <div className='Length-Head'>
                             <FormattedMessage
-                                id='app-LayoutEditor.ve'
-                                defaultMessage='Vertical'
+                                id='app-LayoutEditor.type.portrait'
+                                defaultMessage='Portrait Mode'
                             />
                           </div>
                           <div className='Length-TextField'>

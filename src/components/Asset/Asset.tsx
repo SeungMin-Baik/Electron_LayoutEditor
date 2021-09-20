@@ -3,6 +3,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import ImageDataList from './AssetDataList';
 
+import './Asset.scss';
 
 type AssetProps = {} & RouteComponentProps;
 
@@ -26,15 +27,11 @@ class Asset extends React.Component<AssetProps, AssetStates> {
     render() {
         return (
             <>
-                <div>
+                <div className='LayoutEditor-Asset'>
                     <ImageDataList
                         filters={{
-                            key: 'owner',
-                            operator: '=',
                             value: 'other'
                         }}
-                        saveSelectMedia={() => ''}
-                        isSelect={false}
                     />
                 </div>
             </>

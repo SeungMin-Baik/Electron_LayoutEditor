@@ -1,35 +1,53 @@
-.cbkapp-common-changeAsset-Tap {
-    background: white;
-    padding-top: 1vh;
-    border-bottom: 1px solid #ddd;
-    margin-right: 5vh;
+.LayoutEditor-Head {
+    background-color: #ffffff;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    padding-right: 2vw;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 
-    .Tab-Info {
-        padding-right: 2vw;
-        padding-left: 2vw;
+    .LayoutEditor-Head-Upload {
+        .Upload-Button {
+            padding: 1vh 4vw;
+            border-radius: 4px;
+            border: none;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            box-shadow:
+            0 1px 3px 0 rgba(0, 0, 0, 0.2),
+            0 1px 1px 0 rgba(0, 0, 0, 0.14),
+            0 2px 1px -1px rgba(0, 0, 0, 0.12);
+            background: #00ffba;
+    
+            &:hover {
+                cursor: pointer;
+                background: #00cf98;
+            }
+        }
+    }
+
+    .Search-Info {
+        margin: -0.5vh 1vw;
+
+        &:focus {
+            outline: none;
+        }
     }
 }
 
-.cbkApp-upload-button {
-    background-color: #ffffff;
-    padding-top: 1.5vh;
-    padding-bottom: 2vh;
-    padding-right: 2vw;
-    margin-right: 5vh;
-    text-align: right;
-}
-
-.cbkApp-ImageDataListTable {
-
+.LayoutEditor-AssetDataListTable {
     display: flex;
     flex-Wrap: wrap;
     justify-Content: space-around;
     background-Color: white;
-    margin-right: 5vh;
 
     .gridList {
         width: 100%;
         height: 100%;
+        margin-bottom: 3vh !important;
 
         li {
             margin: 10px;
@@ -40,22 +58,8 @@
             0 2px 1px -1px rgba(0, 0, 0, 0.12);
         }
 
-        .ImageDataListTable-nullData {
+        .AssetDataListTable-nullData {
             text-align: center;
-        }
-    }
-    
-    .Thumbnail-Server {
-        width: 100%;
-        height: 100%;
-
-        .imageInfo {
-            width: 100%;
-            height: 100%;            
-        }
-
-        &:hover {
-            cursor: pointer;
         }
     }
 
@@ -73,25 +77,9 @@
         }
     }
 
-    .selected {
-        background-color: #00e2a5;
-    }
 
     .actionSection {
         display: flex;
-
-        .sendButton {
-            margin-top: 1vh;
-            right: 0;
-            position: absolute;
-            margin-right: 0.5vw;
-            cursor: pointer;
-            z-index: 997;
-        }
-        
-        .sendButton:hover {
-            opacity: 1;
-        }
 
         .editButton {
             opacity: 0.8;
@@ -128,86 +116,16 @@
             opacity: 1;
         }
     }
-    
-    .sendButton:hover {
-        opacity: 1;
-    }
+
 
     
     .icon {
       color: black;
       opacity: 0.5;
     }
-
-    .pagination {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 0 10px;
-        width: 100%;
-        height: 56px;
-        min-height: 56px;
-        user-select: none;
-
-        // Pagination : Per-page
-        .pagination-perpage {
-            margin-right: 10px;
-
-            > span {
-                margin-right: 5px;
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 13px;
-            }
-
-            > .perpage-select {
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 13px;
-
-                &::before,
-                &::after {
-                    border: 0 !important;
-                }
-            }
-        }
-
-        // Pagination : Item range
-        .pagination-range {
-            margin-right: 10px;
-
-            > span {
-                margin-right: 5px;
-                color: rgba(0, 0, 0, 0.6);
-                font-size: 13px;
-                vertical-align: text-top;
-            }
-        }
-
-        // Pagination : Button
-        .pagination-button {
-            > button svg {
-                width: 1em;
-                height: 1em;
-                font-size: 16px;
-            }
-        }
-    }
-
-    .overlay-msg {
-        transition: opacity 100ms ease-in-out;
-        user-select: none;
-        pointer-events: none;
-        text-align: center;
-        font-size: 2vh;
-        width: 100%;
-        margin-top: 9vh;
-    }
-
-    .overlay-msg-dummy {
-        height: 10vh;
-    }
 }
 
-.cbkApp-ImageDataListTable-editor {
+.LayoutEditor-AssetDataListTable-editor {
     display: flex;
     flex-Wrap: wrap;
     justify-Content: space-around;
@@ -230,24 +148,10 @@
             0 2px 1px -1px rgba(0, 0, 0, 0.12);
         }
 
-        .ImageDataListTable-nullData {
+        .AssetDataListTable-nullData {
             width: 100% !important;
             margin-top: 1vh;
             margin-left: 1vw;
-        }
-    }
-    
-    .Thumbnail-Server {
-        width: 100%;
-        height: 100%;
-
-        .imageInfo {
-            width: 100%;
-            height: 100%;            
-        }
-
-        &:hover {
-            cursor: pointer;
         }
     }
 
@@ -264,12 +168,9 @@
             cursor: pointer;
         }
     }
-
-
     
     .icon {
       color: black;
       opacity: 0.5;
     }
-
 }

@@ -84,7 +84,7 @@ class App extends React.Component<AppComponentProps, AppComponentStates> {
                 }
 
                 {/* App Body Contents */}
-                <div className='LayoutEditor-Body'>
+                <div className={`/${window.location.pathname.substring(4)}` === '/' ? 'LayoutEditor-Body-Home' : 'LayoutEditor-Body'}>
                     <Switch>
                         <Route
                             path='/'
