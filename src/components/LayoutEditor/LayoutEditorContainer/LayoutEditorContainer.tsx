@@ -1,22 +1,14 @@
 import * as React from 'react';
-import { Grid, Toolbar } from '@material-ui/core';
 
 import * as fs from 'fs';
-import * as path from 'path';
 import { memo, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import Canvas from '../canvas/Canvas';
-import { useSelector, useDispatch } from 'react-redux';
-import { HeaderToolbar } from '../toolbar/HeaderToolbar';
-import MapList from '../mapList/MapList';
 import debounce from 'lodash-es/debounce';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { useCallback } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import Box from '@material-ui/core/Box';
 import { injectIntl, InjectedIntlProps, FormattedDate, FormattedMessage } from 'react-intl';
 import { Title } from '../Frame';
 import { HeadToolbar } from '../Frame';
@@ -25,7 +17,7 @@ import { Button, Switch } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { LocalPresentationDataInsertReq, PresentationDataUpdateReq } from '@app/utils/renderer/initialize/DatabaseReq';
-import { writeLocalPresentationAsThumbnail } from '@app/utils/renderer/fileManager/writeFile';
+import { writeLocalPresentationAsThumbnail } from '@app/utils/renderer/initialize/getThumbnailReq';
 import { fabric } from 'fabric';
 import * as moment from 'moment';
 
@@ -82,36 +74,6 @@ const propertiesToInclude = [
     'crossOrigin'
 ];
 
-const defaultOption = {
-    fill: 'rgba(0, 0, 0, 1)',
-    stroke: 'rgba(255, 255, 255, 0)',
-    strokeUniform: true,
-    resource: {},
-    link: {
-      enabled: false,
-      type: 'resource',
-      state: 'new',
-      dashboard: {},
-    },
-    tooltip: {
-      enabled: true,
-      type: 'resource',
-      template: '<div>{{message.name}}</div>',
-    },
-    animation: {
-      type: 'none',
-      loop: true,
-      autoplay: true,
-      duration: 1000,
-    },
-    userProperty: {},
-    trigger: {
-      enabled: false,
-      type: 'alarm',
-      script: 'return message.value > 0;',
-      effect: 'style',
-    },
-};
 
 const state = {
   selectedItem: null as any,
@@ -134,12 +96,6 @@ const state = {
     ratio: '16:9',
     width: 1920,
     height: 1080
-    // name: 'New presentation',
-    // desc: 'Description',
-    // orientation: 'PORTRAIT',
-    // ratio: '9:16',
-    // width: 1080,
-    // height: 1920
   }
 };
 
@@ -176,7 +132,6 @@ const LayoutEditorContainer = (props: any) => {
     const newInfo = { ...layoutEditorState.info };
     newInfo.orientation = e.target.value;
     if (newInfo.orientation === 'LANDSCAPE') {
-      // 초기 비율은 16:9
       newInfo.ratio = '16:9';
       newInfo.width = 1920;
       newInfo.height = 1080;
@@ -240,7 +195,6 @@ const LayoutEditorContainer = (props: any) => {
 
   };
 
-
   const getStepContent = stepNumber => {
     switch (stepNumber) {
       case 0:
@@ -291,8 +245,8 @@ const LayoutEditorContainer = (props: any) => {
                       <div className='LayoutEditor-InfoContainer-Length'>
                           <div className='Length-Head'>
                             <FormattedMessage
-                                id='app-LayoutEditor.type.landscape'
-                                defaultMessage='Landscape Mode'
+                                id='app-LayoutEditor.horizontal'
+                                defaultMessage='Horizontal'
                             />
                           </div>
                           <div className='Length-TextField'>
@@ -303,8 +257,8 @@ const LayoutEditorContainer = (props: any) => {
                       <div className='LayoutEditor-InfoContainer-Length'>
                           <div className='Length-Head'>
                             <FormattedMessage
-                                id='app-LayoutEditor.type.portrait'
-                                defaultMessage='Portrait Mode'
+                                id='app-LayoutEditor.vertical'
+                                defaultMessage='Vertical'
                             />
                           </div>
                           <div className='Length-TextField'>
@@ -356,6 +310,7 @@ const LayoutEditorContainer = (props: any) => {
                 preview={layoutEditorState.preview}
                 onChangePreview={handlers.onChangePreview}
                 onSave={handlers.onSave}
+                onSaveImage={handlers.onSaveImage}
               >
               </HeadToolbar>
 
@@ -398,8 +353,6 @@ const LayoutEditorContainer = (props: any) => {
                       width={1152}
                       height={648}
                       loaded={true}
-                      // minZoom={10}
-                      // maxZoom={1000}
                       propertiesToInclude={propertiesToInclude}
                       onModified={onModified}
                       onAdd={onAdd}
@@ -420,14 +373,6 @@ const LayoutEditorContainer = (props: any) => {
 
                   }
             </div>
-                {/* <MapList
-                  canvasRef={canvasRef}
-                  selectedItem={layoutEditorState.selectedItem}
-                />
-              <Button variant='outlined' onClick={handlers.onDownload}> Export to JSON </Button>
-              <Button variant='outlined' onClick={handlers.onUpload}> Import JSON </Button>
-              <Button variant='outlined' onClick={handlers.onSaveImage}> Save Image </Button>
-              <Button variant='outlined' onClick={handlers.onChangePreview}> Preview </Button> */}
           </div>
         );
     }
@@ -476,7 +421,6 @@ const LayoutEditorContainer = (props: any) => {
       console.log('onSelect');
       console.log(target);
       const { selectedItem } = layoutEditorState;
-      // console.log(selectedItem);
       if (
         target &&
         target.id &&
@@ -490,7 +434,6 @@ const LayoutEditorContainer = (props: any) => {
           ...layoutEditorState,
           selectedItem: target
         });
-        // console.log(layoutEditorState);
         canvasRef.current.handler.getObjects().forEach(obj => {
           if (obj) {
             canvasRef.current.handler.animationHandler.resetAnimation(obj, true);
@@ -534,236 +477,6 @@ const LayoutEditorContainer = (props: any) => {
         ...layoutEditorState,
         zoomRatio: zoom * 2,
       });
-    },
-
-
-    onChange: (selectedItem: any, changedValues: any, allValues: any) => {
-      const { editing } = layoutEditorState;
-      setlayoutEditorState({
-        ...layoutEditorState,
-        editing
-      });
-
-      if (!editing) {
-        changeEditing(true);
-      }
-
-      const changedKey = Object.keys(changedValues)[0];
-      const changedValue = changedValues[changedKey];
-
-      if (allValues.workarea) {
-        canvasHandlers.onChangeWokarea(
-          changedKey,
-          changedValue,
-          allValues.workarea
-        );
-        return;
-      }
-
-      if (changedKey === 'width' || changedKey === 'height') {
-        canvasRef.current.handler.scaleToResize(allValues.width, allValues.height);
-        return;
-      }
-
-      if (changedKey === 'angle') {
-        canvasRef.current.handler.rotate(allValues.angle);
-        return;
-      }
-
-      if (changedKey === 'locked') {
-        canvasRef.current.handler.setObject({
-          lockMovementX: changedValue,
-          lockMovementY: changedValue,
-          hasControls: !changedValue,
-          hoverCursor: changedValue ? 'pointer' : 'move',
-          editable: !changedValue,
-          locked: changedValue,
-        });
-        return;
-      }
-
-      if (changedKey === 'file' || changedKey === 'src' || changedKey === 'code') {
-
-        if (selectedItem.type === 'image') {
-          canvasRef.current.handler.setImageById(selectedItem.id, changedValue);
-        } else if (selectedItem.superType === 'element') {
-          canvasRef.current.handler.elementHandler.setById(
-            selectedItem.id,
-            changedValue
-          );
-        }
-        return;
-      }
-
-      if (changedKey === 'link') {
-        const link = Object.assign({}, defaultOption.link, allValues.link);
-        canvasRef.current.handler.set(changedKey, link);
-        return;
-      }
-
-      if (changedKey === 'tooltip') {
-        const tooltip = Object.assign(
-          {},
-          defaultOption.tooltip,
-          allValues.tooltip
-        );
-        canvasRef.current.handler.set(changedKey, tooltip);
-        return;
-      }
-
-      if (changedKey === 'animation') {
-        const animation = Object.assign(
-          {},
-          defaultOption.animation,
-          allValues.animation
-        );
-        canvasRef.current.handler.set(changedKey, animation);
-        return;
-      }
-
-      if (changedKey === 'icon') {
-        const { unicode, styles } = changedValue[Object.keys(changedValue)[0]];
-        const uni = parseInt(unicode, 16);
-
-        if (styles[0] === 'brands') {
-          canvasRef.current.handler.set('fontFamily', 'Font Awesome 5 Brands');
-        } else if (styles[0] === 'regular') {
-          canvasRef.current.handler.set('fontFamily', 'Font Awesome 5 Regular');
-        } else {
-          canvasRef.current.handler.set('fontFamily', 'Font Awesome 5 Free');
-        }
-        canvasRef.current.handler.set('text', String.fromCodePoint(uni));
-        canvasRef.current.handler.set('icon', changedValue);
-        return;
-      }
-
-      if (changedKey === 'fontWeight') {
-        canvasRef.current.handler.set(changedKey, changedValue ? 'bold' : 'normal');
-        console.log('fontWeight?????');
-        return;
-      }
-
-      if (changedKey === 'fontStyle') {
-        canvasRef.current.handler.set(changedKey, changedValue ? 'italic' : 'normal');
-        return;
-      }
-
-      if (changedKey === 'textAlign') {
-        canvasRef.current.handler.set(changedKey, Object.keys(changedValue)[0]);
-        return;
-      }
-
-      if (changedKey === 'trigger') {
-        const trigger = Object.assign(
-          {},
-          defaultOption.trigger,
-          allValues.trigger
-        );
-        canvasRef.current.handler.set(changedKey, trigger);
-        return;
-      }
-
-      if (changedKey === 'filters') {
-        const filterKey = Object.keys(changedValue)[0];
-        const filterValue = allValues.filters[filterKey];
-
-        if (filterKey === 'gamma') {
-          const rgb = [filterValue.r, filterValue.g, filterValue.b];
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              gamma: rgb,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'brightness') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              brightness: filterValue.brightness,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'contrast') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              contrast: filterValue.contrast,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'saturation') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              saturation: filterValue.saturation,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'hue') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              rotation: filterValue.rotation,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'noise') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              noise: filterValue.noise,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'pixelate') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              blocksize: filterValue.blocksize,
-            }
-          );
-          return;
-        }
-
-        if (filterKey === 'blur') {
-          canvasRef.current.handler.imageHandler.applyFilterByType(
-            filterKey,
-            changedValue[filterKey].enabled,
-            {
-              value: filterValue.value,
-            }
-          );
-          return;
-        }
-
-        canvasRef.current.handler.imageHandler.applyFilterByType(
-          filterKey,
-          changedValue[filterKey]
-        );
-        return;
-      }
-
-      canvasRef.current.handler.set(changedKey, changedValue);
     },
 
 
@@ -811,15 +524,10 @@ const LayoutEditorContainer = (props: any) => {
     onRemove,
     onSelect,
     onModified,
-    onChange,
     onZoom,
     onClick,
     onTransaction,
   } = canvasHandlers;
-
-
-
-
 
 
   const handlers = {
@@ -965,22 +673,13 @@ const LayoutEditorContainer = (props: any) => {
       // Set Presentation Info
       const prstnInfo = {
         _id: prstnId,
-        code: '',
         name: layoutEditorState.info.name,
         desc: layoutEditorState.info.desc,
-        tags: [],
-        lock: false,
         orientation: layoutEditorState.info.orientation,
         ratio: layoutEditorState.info.ratio,
         width: layoutEditorState.info.width,
         height: layoutEditorState.info.height,
-        bgAudioEnable: false,
-        bgEnable: false,
-        bg: '',
-        bgAudio: '',
         isLocal: true,
-        sharedList: [],
-        mobility: false,
         regions: null,
         assets: null,
         layoutinfo: null,
@@ -1002,14 +701,6 @@ const LayoutEditorContainer = (props: any) => {
             height: null,
             zOrder: zOrder + 1,
             rotate: asset.angle,
-            events: [],
-            bgEnable: false,
-            slideEffect: {
-              code: '',
-              speed: 5,
-              repeat: false,
-              delay: 10
-            },
           };
           /*
           The left and top positions are not 0,0, and this is a calculation considering the size of the work area and the resolution of the player being transmitted.
@@ -1040,8 +731,6 @@ const LayoutEditorContainer = (props: any) => {
             const textProperty = {
               type: 'TEXT',
               properties: {
-                caption: '',
-                alpha: 255,
                 align: 'center',
                 textEffect: {
                   code: 'none',
@@ -1058,10 +747,6 @@ const LayoutEditorContainer = (props: any) => {
                   strikethrough: false
                 },
                 fontSize: asset.fontSize,
-                // fontSize: asset.fontSize * ((( commonProperty.width / 300) + (commonProperty.height / 79.1)) / 2),
-                  // layoutEditorState.info.orientation === 'LANDSCAPE' ?
-                  //   asset.fontSize * (((layoutEditorState.info.width / 1152) + (layoutEditorState.info.height / 648)) / 2)
-                  // : asset.fontSize * (((layoutEditorState.info.width / 405) + (layoutEditorState.info.height / 720)) / 2),
                 fontColor: asset.fill,
                 strokeWidth: 0,
                 strokeColor: null,
@@ -1070,7 +755,6 @@ const LayoutEditorContainer = (props: any) => {
                 shadowRadius: 1,
                 shadowColor: '#00000000',
                 textLineSpacing: 1.16,
-                styles: {},
                 singleLine: false
               },
               lock: false
@@ -1082,14 +766,11 @@ const LayoutEditorContainer = (props: any) => {
             const imageProperty = {
               type: 'IMAGE',
               properties: {
-                caption: '',
-                alpha: 255,
                 id: asset.assetid,
                 fileType: asset.fileType,
                 name: asset.name,
                 md5: asset.md5,
                 mimeType: asset.mimeType,
-                srcType: 'SDSS'
               },
             };
             object = { ...commonProperty, ...imageProperty };
@@ -1099,69 +780,16 @@ const LayoutEditorContainer = (props: any) => {
             const videoProperty = {
               type: 'VIDEO',
               properties: {
-                caption: '',
-                alpha: 255,
                 id: asset.assetid,
                 fileType: asset.fileType,
                 name: asset.name,
                 md5: asset.md5,
                 mimeType: asset.mimeType,
-                srcType: 'SDSS',
                 repeat: true,
                 mute: false
               },
             };
             object = { ...commonProperty, ...videoProperty };
-          }
-          // Input source
-          if (asset.mimeType === 'INPUT_SOURCE') {
-            const inputProperty = {
-              type: 'INPUT_SOURCE',
-              properties: {
-                caption: '',
-                alpha: 255,
-                id: asset.assetid,
-                fileType: '.svg',
-                name: asset.name,
-                md5: asset.md5,
-                inputSourceType: 'TEMPERATURE_CHECK'
-              },
-            };
-            object = { ...commonProperty, ...inputProperty };
-          }
-
-          if (asset.mimeType === 'FRAME') {
-            let srcDataFrame = '';
-            // get svg data
-            const canvasObject = getObjectWithID(asset.id);
-            const top = canvasObject.top;
-            const left = canvasObject.left;
-            canvasObject.top = 0;
-            canvasObject.left = 0;
-            // paths = canvasObject.paths;
-            srcDataFrame = convertToSVG(canvasObject);
-            canvasObject.top = top;
-            canvasObject.left = left;
-            // end: get svg data
-            const frameProperty = {
-              type: 'FRAME',
-              properties: {
-                caption: '',
-                alpha: 255,
-                name: asset.name,
-                shapeType: 'FREE',
-                id: asset.id,
-                fillColor: asset.fill,
-                fillPattern: '',
-                lineColor: asset.stroke,
-                linePattern: convertStrokeStyle(asset.strokeDashArray).toUpperCase(),
-                lineDepth: asset.strokeWidth,
-                data: srcDataFrame,
-                oriWidth: asset.width,
-                oriHeight: asset.height
-              }
-            };
-            object = { ...commonProperty, ...frameProperty };
           }
 
           // Insert object to presentation design array
@@ -1175,7 +803,6 @@ const LayoutEditorContainer = (props: any) => {
       // Set Presentation AssetList
       const prstnAssetList = [];
       objects.map((asset) => {
-        // 자료 아이디가 존재하고, 인풋소스가 아닐때
         if (asset.assetid && asset.mimeType !== 'INPUT_SOURCE') {
           // Set asset object
           const assetObject = {
@@ -1221,10 +848,6 @@ const LayoutEditorContainer = (props: any) => {
     }
   };
 
-  function getCublickStore(cublickStoreId: string): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-    });
-}
 
   const showLoading = loading => {
     setlayoutEditorState(loading);
@@ -1242,75 +865,6 @@ const LayoutEditorContainer = (props: any) => {
       setOpenSuccAlert(open);
     }
   };
-
-  const convertStrokeStyle = (value: any) => {
-    let result: any;
-    if (typeof value === 'string') {
-        // strokeStyle -> strokeDashArray
-        switch (value) {
-            case 'solid': result = [0, 0]; break;
-            case 'dotted': result = [5, 5]; break;
-            case 'dashed': result = [10, 5]; break;
-            default: result = [0, 0]; break;
-        }
-    } else {
-        // strokeDashArray -> strokeStyle
-        value = value ? value.toString() : value;
-        switch (value) {
-            case '0,0': result = 'solid'; break;
-            case '5,5': result = 'dotted'; break;
-            case '10,5': result = 'dashed'; break;
-            default: result = 'solid'; break;
-        }
-    }
-    return result;
-  };
-
-    const getObjectWithID = (objectID: any) => {
-      let targetObject: any = {};
-      const objects: Array<any> = canvasRef.current.canvas.getObjects();
-      objects.some(object => {
-          if (object && object.id === objectID) {
-              targetObject = object;
-              return (object.id === objectID);
-          }
-      });
-      return targetObject;
-    };
-
-    const convertToSVG = (canvasObject) => {
-      const customProperties = [
-        // Additional JSON export properties.
-        'id',
-        'realType',
-        'animation',
-        'textEffect',
-        'singleLine',
-        'slideEffect',
-        'assetInfo',
-        'name',
-        'lock',
-        'events',
-        'strokeWidthUnscaled',
-        'styles',
-        'repeat',
-        'mute',
-        'clipPath',
-        'clipPathObject',
-        'subtype'
-    ];
-      if (!canvasObject || !canvasObject.get('type')) {
-          return '';
-      }
-      let returnSVG = '';
-      canvasObject.clone(objectClone => {
-          objectClone.scale(1, 1);
-          objectClone.set('angle', 0);
-          returnSVG = objectClone.toSVG();
-      }, customProperties);
-      return returnSVG;
-  };
-
 
 
   return (

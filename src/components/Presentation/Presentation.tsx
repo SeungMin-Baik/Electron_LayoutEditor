@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PresentationDataList from './PresentationDataList';
+import PresentationDataList from './list/PresentationDataList';
 
 import './Presentation.scss';
 

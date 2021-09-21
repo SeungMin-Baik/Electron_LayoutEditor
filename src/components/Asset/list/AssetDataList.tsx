@@ -13,14 +13,14 @@ import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/pro-solid-svg-icons/faTrashAlt';
 
-import AssetUploadDialog from './Dialog/AssetUploadDialog';
+import AssetUploadDialog from '../Dialog/AssetUploadDialog';
 
 import { AssetDatabaseFindAllReq, AssetDatabaseDeletetReq } from '@app/utils/renderer/initialize/DatabaseReq';
 import electronConfig from '@app/config/electron-config';
 
 import Confirm from '@app/components/AppPartial/Confirm';
 
-import * as imageLoad from '../../../public/media/image-loading.png';
+import * as imageLoad from '../../../../public/media/image-loading.png';
 
 import store from '@app/store';
 import * as fs from 'fs';

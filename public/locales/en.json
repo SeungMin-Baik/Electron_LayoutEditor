@@ -36,7 +36,6 @@
   "app-common-user-change": "User change",
   "app-common.edit": "Edit",
 
-  "app-NavBar-changelang" : "Change Language",
 
   "app-showMessageBox.yes": "YES",
   "app-showMessageBox.no": "NO",
@@ -45,50 +44,21 @@
   "app-showMessageBox.save":  "Do you want to save?",
   "app-showMessageBox.download": "Do you want to download?",
   "app-showMessageBox.out": "Do you want to go out?",
+  "app-showMessageBox.save_success": "Saved successfully.",
+  "app-showMessageBox.save_fail": "Save failed.",
+  "app-showMessageBox.exit_or_fail": "The file already exists or the download failed.",
+  "app-showMessageBox.too_big": "The size of the data is too large.",
 
-  "app-partial.datalist.of": "of",
-  "app-partial.datalist.perPage": "Items per page",
-  "app-partial.datalist.msg-load": "Loading...",
-  "app-partial.datalist.msg-error": "Error occurred while loading data.",
-  "app-partial.datalist.msg-empty": "Empty data",
 
-  "app-menu.item.device": "Devices",
-  "app-menu.item.playlist": "Playlist",
-  "app-menu.item.schedule" : "Schedule",
-  "app-menu.item.instant-message" : "Instant{br}Message",
-  "app-menu.item.cublick-store": "Store",
   "app-menu.item.asset": "Asset",
   "app-menu.item.presentation": "Template",
-  "app-menu.item.rule-engine": "Rule Engine",
-  "app-menu.item.user-management": "User Management",
   "app-menu.item.layout-Editor": "Editor",
-  "app-menu.item.thermal": "Thermal",
 
 
-  "app-contents.select": "Select",
-  "app-contents.add": "Add Contents",
-  
-
-  "app-asset.tab.asset": "Asset",
-  "app-asset.tab.widget": "Widget",
-  "app-asset.tab.googleDrive": "Google Drive",
-  "app-asset.tab.youTube": "YouTube",
-  "app-asset.send_device": "Transmittable device",
-  "app-asset.upload": "Upload Asset",
-  "app-asset.send": "Send Asset",
   "app-asset-upload": "Upload",
 
-  "app-presentation.send": "Send Presentation ",
-  "app-presentation.preview.name": "Name",
-  "app-presentation.preview.desc": "Desc",
-  "app-presentation.preview.mode": "Mode",
-  "app-presentation.preview.ratio": "Ratio",
-  "app-presentation.preview.width": "Width",
-  "app-presentation.preview.height": "Height",
-  "app-presentation.preview.updateDate": "Update Date",
-
-  "app-LayoutEditor.neme": "NAME",
-  "app-LayoutEditor.explanation": "EXPLANATION",
+  "app-LayoutEditor.neme": "Name",
+  "app-LayoutEditor.explanation": "explanation",
   "app-LayoutEditor.info": "TemPlate Information",
   "app-LayoutEditor.icon-front": "bring it forward",
   "app-LayoutEditor.icon-backwards": "backwards",
@@ -96,7 +66,6 @@
   "app-LayoutEditor.icon-rotate-right": "rotate 90 degrees to the right",
   "app-LayoutEditor.type.landscape": "Landscape Mode",
   "app-LayoutEditor.type.portrait": "Portrait Mode",
-
-  "app-Enter.onlyNumber": "Enter only numbers (more than 10 seconds)",
-  "app-Enter.Message": "Message (4~128 characters)"
+  "app-LayoutEditor.horizontal": "Horizontal",
+  "app-LayoutEditor.vertical": "Vertical"
 }

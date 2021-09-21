@@ -41,6 +41,11 @@ export function initAppMediaThumbnails(): Promise<void> {
                     console.log('metadata.fileType error');
                 }
             });
+
+            ipcMain.on('AppLocalPresentation-Thumbnail-Write', async (event: any, thumbnail: string, id: string) => {
+                imageBase64Thumbnail(event, config.APP.DIR_PATH.PRESENTATION_PATH + '/' + id, id, thumbnail);
+            });
+
             resolve();
         } catch (err) {
             reject(`ERROR_INIT_FILE_MANAGE: ${err}`);

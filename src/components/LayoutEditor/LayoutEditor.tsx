@@ -89,9 +89,6 @@ class LayoutEditor extends React.Component<LayoutEditorProps, LayoutEditorStates
     }
 
     private handleConfirm = (open: boolean, out?: boolean) => {
-        console.log('nextLocation', this.state.nextLocation);
-        console.log('showConfirmModal', this.state.showConfirmModal);
-        console.log('open', open);
         if (open === false) {
             this.setState({
                 showConfirmModal: false

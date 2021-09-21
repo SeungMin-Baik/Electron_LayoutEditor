@@ -782,7 +782,7 @@ class Handler implements HandlerOptions {
                     this.canvas.renderAll();
                 }
             }
-        }, 10);
+        }, 100);
 
         this.canvas.renderAll();
 
@@ -849,112 +849,6 @@ class Handler implements HandlerOptions {
         return createdObj;
 
     };
-
-    public addSvg (obj: any, loadRegion?: boolean) {
-        console.log('addSvgObj', obj);
-        const svgSrc = '';
-        if (obj.src !== '') {
-            // if (obj.assetid) {
-            //     svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.assetid}/data?access_token=${store.getState().appAuth.token}`;
-            // } else {
-            //     svgSrc = `${config.EXTERNAL.CUBLICK.ASSET.AST}/${obj.id}/data?access_token=${store.getState().appAuth.token}`;
-            // }
-
-            fabric.loadSVGFromURL(svgSrc, (objects, options) => {
-                const svgObj: any = fabric.util.groupSVGElements(objects, options);
-                const svgString = svgObj.toSVG();
-                svgObj.name = obj.name ? obj.name : 'Free Frame';
-                svgObj.top = obj.top ? obj.top : 0;
-                svgObj.left = obj.left ? obj.left : 0;
-                svgObj.width = obj.width ? obj.width : 480;
-                svgObj.height = obj.height ? obj.height : 480;
-                svgObj.scaleX = obj.scaleX ? obj.scaleX : 1;
-                svgObj.scaleY = obj.scaleY ? obj.scaleY : 1;
-
-                svgObj.id = obj.assetid ? obj.assetid : obj.id;
-                svgObj.name = obj.name;
-                svgObj.md5 = obj.md5;
-                svgObj.src = svgSrc;
-                svgObj.ext = '.svg';
-                // thumbnailLink: obj.thumbnailLink;
-                // webContentLink: obj.srcLink;
-                svgObj.mimeType = obj.mimeType;
-                svgObj.srcType = 'SDSS';
-                svgObj.contentData = svgString;
-
-                if (!obj.assetid) {
-                    svgObj.stroke = obj.stroke;
-                    svgObj.strokeDashArray = obj.strokeDashArray ? obj.strokeDashArray : [0, 0];
-                    svgObj.strokeWidth = obj.strokeWidth ? obj.strokeWidth : 10;
-                    svgObj.fill = obj.fill;
-                }
-
-                this.canvas.add(svgObj);
-                this.canvas.calcOffset();
-                this.canvas.renderAll();
-            });
-        } else if (obj.src === '' && obj.data) {
-            const customProperties = [
-                // Additional JSON export properties.
-                'id',
-                'realType',
-                'animation',
-                'textEffect',
-                'singleLine',
-                'slideEffect',
-                'assetInfo',
-                'name',
-                'lock',
-                'events',
-                'strokeWidthUnscaled',
-                'styles',
-                'repeat',
-                'mute',
-                'clipPath',
-                'clipPathObject',
-                'subtype'
-            ];
-            fabric.loadSVGFromString(obj.data, (objects, options) => {
-                const svgObj: any = fabric.util.groupSVGElements(objects, options);
-                const svgString = svgObj.toSVG();
-                svgObj.name = obj.name ? obj.name : 'Free Frame';
-                svgObj.top = obj.top ? obj.top : 0;
-                svgObj.left = obj.left ? obj.left : 0;
-
-                svgObj.width = obj.oriWidth;
-                svgObj.height = obj.oriHeight;
-                svgObj.scaleX = obj.width / 480;
-                svgObj.scaleY = obj.height / 480;
-                svgObj.angle = obj.angle;
-
-                svgObj.id = obj.assetid ? obj.assetid : obj.id;
-                svgObj.name = obj.name;
-                svgObj.md5 = obj.md5 ? obj.md5 : '';
-                svgObj.src = svgSrc;
-                svgObj.ext = '.svg';
-                // thumbnailLink: obj.thumbnailLink;
-                // webContentLink: obj.srcLink;
-                svgObj.mimeType = obj.mimeType;
-                svgObj.srcType = 'SDSS';
-                svgObj.contentData = svgString;
-
-                if (!obj.assetid) {
-                    svgObj.stroke = obj.stroke;
-                    svgObj.strokeDashArray = obj.strokeDashArray ? obj.strokeDashArray : [0, 0];
-                    svgObj.strokeWidth = obj.strokeWidth ? obj.strokeWidth : 10;
-                    svgObj.fill = obj.fill;
-                }
-
-                this.canvas.add(svgObj);
-                this.canvas.calcOffset();
-                this.canvas.renderAll();
-
-            });
-        }
-    }
-
-
-
 
     /**
      * Remove object
@@ -1722,8 +1616,6 @@ class Handler implements HandlerOptions {
                     naturalSize.naturalHeight = image.naturalHeight;
                     this.add(targetObj, false, true, naturalSize);
                 });
-            } else if (obj.type === 'path') {
-                this.addSvg(obj);
             } else {
                 this.add(targetObj, false, true);
             }

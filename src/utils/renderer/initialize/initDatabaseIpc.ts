@@ -3,18 +3,13 @@ import { ipcRenderer, ipcMain } from 'electron';
 // DB
 import {
     insertClientAssetDataInDB,
-    insertServerAssetDataInDB,
     deleteInDB,
     findOneAssetInDB,
     findAllAssetInDB,
     findAllPresentationInDB,
     insertLocalPresentationDataInDB,
-    updateScheduleInDB,
     deletePresentationDataInDB,
     updatePresentationDataInDB,
-    updatePlaylistInDB,
-    updateInstantMessageInDB,
-    updateDeviceInDB,
     findOnePresentationInDB
 } from '@app/utils/main/database';
 

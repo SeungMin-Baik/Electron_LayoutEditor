@@ -38,24 +38,6 @@ export function writeMediaAsFile(event: any, media: any, type: string): Promise<
                 getMediaData(media.url, fileWriteStream)
                 .then((stream: any) => {
                     _resolve();
-                    // stream.once('close', () => {
-                    //     const md5File = require('md5-file');
-                    //     md5File(filePath, (err: any, hash: any) => {
-                    //         if (err) throw err;
-                    //         _resolve(null);
-                    //         if (hash === media.md5 || media.md5 === 0) {
-                    //             event.sender.send('AppDisplayer-DataBase-Insert', media);
-                    //             _resolve(null);
-                    //         } else {
-                    //             console.log('log', 1, `MD5 ERROR: ${hash}|| ${media.md5}`);
-                    //             // If failed write media file, Remove media file.
-                    //             if (fs.existsSync(filePath)) {
-                    //                 fs.unlinkSync(filePath);
-                    //             }
-                    //             _resolve(media);
-                    //         }
-                    //     });
-                    // });
                 })
                 .catch((err) => {
                     console.error(err);
@@ -64,41 +46,6 @@ export function writeMediaAsFile(event: any, media: any, type: string): Promise<
             }, 200);
 
         });
-
-        // try {
-        //     for (const m of media) {
-        //         promises.push(task(m));
-        //     }
-
-        //     Promise.all(promises)
-        //         .then((media) => {
-        //             for (let i = 0; i < media.length; i++) {
-        //                 if (media[i] === null) {
-        //                     media.splice(i, 1);
-        //                     i--;
-        //                 }
-        //             }
-        //             if (media.length !== 0 && timer === 0) {
-        //                 timer++;
-        //                 setTimeout(() => {
-        //                     writeMediaAsFile(media, event, type);
-        //                 }, 5 * 1000);
-        //                 reject();
-        //             } else if (media.length === 0) {
-        //                 timer = 0;
-        //                 resolve(null);
-        //             } else {
-        //                 reject();
-        //             }
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //             reject();
-        //         });
-
-        // } catch (err) {
-        //     reject(err);
-        // }
 
         try {
             media.map(media => {

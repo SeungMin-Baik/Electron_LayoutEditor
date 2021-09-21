@@ -146,14 +146,6 @@ class MapList extends React.Component<MapListProps, MapListStates> {
                             </Tooltip>
 
 
-                            {/* <Tooltip className='MapList-Icon' title='복사' placement='top'>
-                                <FileCopyIcon onClick={(e) => {
-                                    e.stopPropagation();
-                                    this.props.canvasRef.current.handler.duplicate();
-                                }
-                                } />
-                            </Tooltip> */}
-
                             <Tooltip title='삭제' placement='top'>
                                 <div className='MapList-Icon'>
                                     <DeleteIcon onClick={e => {

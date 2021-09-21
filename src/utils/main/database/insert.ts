@@ -50,66 +50,6 @@ export function insertClientAssetDataInDB(event: any, asset: any): Promise<void>
     });
 }
 
-export function insertServerAssetDataInDB(event: any, asset: any): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-        try {
-            if (!remote.getGlobal('APP_DB').assetMediaDb) {
-                console.error('ERR_DB_IS_UNDEFINED');
-                event.sender.send('log', 3, 'ERR_DB_IS_UNDEFINED');
-                reject('ERR_DB_IS_UNDEFINED');
-                return;
-            }
-
-            (remote.getGlobal('APP_DB').assetMediaDb as Datastore).insert(
-                {
-                    FileData: {
-                        name: asset.name,
-                        desc: asset.desc,
-                        customTags: asset.customTags,
-                        value: asset.value,
-                        tags: asset.value,
-                        mimeType: asset.mimeType,
-                        srcType: asset.srcType,
-                        fileType: asset.fileType,
-                        status: asset.status,
-                        width: asset.width,
-                        duration: asset.duration,
-                        height: asset.height,
-                        md5: asset.md5,
-                        size: asset.size,
-                        downloadCount: asset.downloadCount,
-                        srcLink: asset.srcLink,
-                        metaData: asset.metaData,
-                        copyright: asset.copyright,
-                        hasThumbnail: asset.hasThumbnail,
-                        isPrivate: asset.isPrivate,
-                        isSystem: asset.isSystem,
-                        _id: asset._id,
-                        owner: asset.owner,
-                        createdDate: asset.createdDate,
-                        updatedDate: asset.updatedDate,
-                        id: asset.id,
-                        path: electronConfig.APP.DIR_PATH.FILE_PATH,
-                        type: asset.type
-                    },
-                    timestamp: moment().format('LLL'),
-                    _id: asset.id
-                },
-                err => {
-                    if (err) {
-                        reject(err);
-                        return;
-                    }
-
-                    resolve();
-                }
-            );
-        } catch (err) {
-            reject(err);
-        }
-    });
-}
-
     // PRESENTATION
 
 

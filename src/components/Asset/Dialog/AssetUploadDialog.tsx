@@ -158,8 +158,6 @@ class AssetUploadDialog extends React.Component<AssetUploadDialogProps, AssetUpl
         fs.copy(this.state.selectedFile.path, path.join(config.APP.DIR_PATH.FILE_PATH) + '/' + this.state.selectedFile.id, function (err) {
             if (err) {
                 return console.error(err);
-            } else {
-                console.log('fs copy success');
             }
         });
 

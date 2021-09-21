@@ -7,7 +7,6 @@ import LayoutEditorContainer from './LayoutEditorContainer';
 import {  PresentationDatabaseFindOneReq } from '@app/utils/renderer/initialize/DatabaseReq';
 
 import store from '@app/store';
-import { any } from 'prop-types';
 
 
 

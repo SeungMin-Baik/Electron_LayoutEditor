@@ -39,9 +39,6 @@ class Alert extends React.Component<AlertProps, AlertStates> {
         :
         this.props.type === 'TOO_BIG' ?
             this.message = <FormattedMessage id='app-showMessageBox.too_big' defaultMessage='The size of the data is too large.'/>
-        :
-        this.props.type === 'SCHEDULE_NAME_ERROR' ?
-            this.message = <FormattedMessage id='app-showMessageBox.schedule_name_error' defaultMessage='Please enter the schedule name.'/>
         : '';
         return (
             <div>

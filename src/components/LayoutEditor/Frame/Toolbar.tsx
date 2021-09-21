@@ -20,6 +20,7 @@ import FlipToFrontIcon from '@material-ui/icons/FlipToFront';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import SaveIcon from '@material-ui/icons/Save';
+import Download from '@material-ui/icons/SaveAlt';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -52,6 +53,7 @@ type ToolbarProps = {
     preview: boolean;
     onChangePreview: any;
     onSave: any;
+    onSaveImage: any;
     children?: any;
 } & InjectedIntlProps;
 
@@ -503,6 +505,12 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
                         <span className='Toolbar-info-icons'>
                             <Tooltip title='저장' placement='top'>
                                 <SaveIcon onClick={this.props.onSave} />
+                            </Tooltip>
+                        </span>
+
+                        <span className='Toolbar-info-icons'>
+                            <Tooltip title='이미지 다운로드' placement='top'>
+                                <Download onClick={this.props.onSaveImage} />
                             </Tooltip>
                         </span>
 

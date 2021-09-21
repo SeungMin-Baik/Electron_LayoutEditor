@@ -10,6 +10,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import InfoIcon from '@material-ui/icons/Info';
 import TextField from '@material-ui/core/TextField';
 
+import { push } from 'connected-react-router';
+
 import Fab from '@material-ui/core/Fab';
 
 import { PresentationDatabaseFindAllReq, PresentationDatabaseDeletetReq } from '@app/utils/renderer/initialize/DatabaseReq';
@@ -21,7 +23,7 @@ import * as fs from 'fs';
 import electronConfig from '@app/config/electron-config';
 import store from '@app/store';
 
-import * as imageLoad from '../../../public/media/image-loading.png';
+import * as imageLoad from '../../../../public/media/image-loading.png';
 
 
 import './PresentationDataList.scss';
@@ -80,7 +82,7 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
                                 {
                                     !this.props.isEditor ?
                                         <div className='actionSection'>
-                                            <div className='editButton'>
+                                            <div className='editButton' onClick={() => this.linkToEditPstn(ClientData._id)}>
                                                 <Fab variant='round' size='small' className='editButton-fab'>
                                                     <FontAwesomeIcon className='editButton-info' icon={faEdit} />
                                                 </Fab>
@@ -227,6 +229,10 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
         this.setState({
             saveTitleValue: e.target.value
         });
+    }
+
+    private linkToEditPstn = (prstId: string) => {
+        store.dispatch(push(`/layoutEditor/${prstId}`));
     }
 }
 

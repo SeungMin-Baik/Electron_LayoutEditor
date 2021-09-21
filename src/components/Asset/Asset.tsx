@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { RouteComponentProps } from 'react-router';
-import ImageDataList from './AssetDataList';
+import ImageDataList from './list/AssetDataList';
 
 import './Asset.scss';
 

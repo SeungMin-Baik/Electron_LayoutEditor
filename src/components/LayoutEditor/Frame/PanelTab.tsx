@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import ImageDataList from '@app/components/Asset/AssetDataList';
-import PresentationDataList from '@app/components/Presentation/PresentationDataList';
-import MapList from '../mapList/MapList';
+import ImageDataList from '@app/components/Asset/list/AssetDataList';
+import PresentationDataList from '@app/components/Presentation/list/PresentationDataList';
+import MapList from './MapList';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
