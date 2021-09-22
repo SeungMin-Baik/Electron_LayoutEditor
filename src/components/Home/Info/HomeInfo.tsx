@@ -5,7 +5,8 @@ import { RouteComponentProps } from 'react-router';
 import store from '@app/store';
 import { push } from 'connected-react-router';
 
-import * as Editor from '../../../../public/media/editor.png';
+import * as HomeImage1 from '../../../../public/media/home-1.png';
+import * as HomeImage2 from '../../../../public/media/home-2.png';
 
 import './HomeInfo.scss';
 
@@ -33,6 +34,11 @@ class HomeInfo extends React.Component<HomeInfoProps, HomeInfotStates> {
                             id='app-home-body.title'
                             values={{br: <br/>}}
                         />
+                    </div>
+
+                    <div className='HomeInfo-Body-Image'>
+                        <img src={HomeImage1} style={{width: '25%', marginRight: '5vw'}}/>
+                        <img src={HomeImage2} style={{width: '25%'}}/>
                     </div>
 
                     <div className='HomeInfo-Body-Button'>

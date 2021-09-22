@@ -117,15 +117,6 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
         }
     }
 
-    // setType = () => {
-    //     console.log('sdfsdfsdfnl');
-    //     const selectedItem = this.props.selectedItem;
-    //     if (selectedItem) {
-    //         this.setState({
-    //             type: this.props.selectedItem.type
-    //         });
-    //     }
-    // }
 
     waitForCanvasRender = canvas => {
         setTimeout(() => {
@@ -204,10 +195,6 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
                 }
                 <div className='LayoutEditor-Toolbar'>
                     <div className='Toolbar-info'>
-                        {/* <span className='Toolbar-info-icons'><VerticalAlignCenterIcon onClick={() => this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.alignmentHandler.center() : null} /></span> */}
-                        {/* <span className='Toolbar-info-icons'>
-                        <FileCopyIcon onClick={() => this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.duplicate() : null} />
-                    </span> */}
                         <span className='Toolbar-info-icons'>
                             <Tooltip title='되돌리기' placement='top'>
                                 <UndoIcon onClick={() => this.props.canvasRef.current.handler.transactionHandler.undo()} />
@@ -239,17 +226,6 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
                             <CropFreeIcon onClick={() => this.props.canvasRef.current.handler.workareaHandler.fitWithWrokareaSize()} />
                         </Tooltip>
                     </span>
-
-                        {/*
-                        <div className='Toolbar-info-divider' />
-
-
-                        <span className='Toolbar-info-icons'>
-                            <Tooltip title='자료업로드' placement='top'>
-                                <BackupIcon onClick={this.props.onSave} />
-                            </Tooltip>
-                        </span> */}
-
 
                         <div className='Toolbar-info-divider' />
 
@@ -355,147 +331,6 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
                             : null
                         }
 
-                        {
-                            this.state.itemMimeType === 'FRAME' ?
-                            <>
-                                <span className='Toolbar-info-icons'>
-                                    <Tooltip title='테두리 굵기' placement='top'>
-                                        <button
-                                            className='select-option-button'
-                                            aria-controls='select-border'
-                                            aria-haspopup='true'
-                                            style={{textTransform: 'none'}}
-                                            onClick={this.handleFrameLineWeightOpen}
-                                        >
-                                            <LineWeightIcon />
-                                        </button>
-                                    </Tooltip>
-                                    <Menu
-                                        id='select-border'
-                                        anchorEl={this.state.setAnchorEl}
-                                        keepMounted
-                                        open={Boolean(this.state.setAnchorEl)}
-                                        onClose={this.handleFrameLineWeightClose}
-                                    >
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(0)}>
-                                            <div> None </div>
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(1)}>
-                                            <div style={{ width: '3vw', borderTop: '1px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(2)}>
-                                            <div style={{ width: '3vw', borderTop: '2px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(3)}>
-                                            <div style={{ width: '3vw', borderTop: '3px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(5)}>
-                                            <div style={{ width: '3vw', borderTop: '4px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(7)}>
-                                            <div style={{ width: '3vw', borderTop: '5px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(10)}>
-                                            <div style={{ width: '3vw', borderTop: '6px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineWeightChange(15)}>
-                                            <div style={{ width: '3vw', borderTop: '7px solid #333'}} />
-                                        </MenuItem>
-                                        {/* <MenuItem value='20'>
-                                            <div style={{ width: '3vw', borderTop: '8px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem value='30'>
-                                            <div style={{ width: '3vw', borderTop: '10px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem value='40'>
-                                            <div style={{ width: '3vw', borderTop: '13px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem value='60'>
-                                            <div style={{ width: '3vw', borderTop: '20px solid #333'}} />
-                                        </MenuItem> */}
-                                    </Menu>
-                                </span>
-
-                                <span className='Toolbar-info-icons'>
-                                    <Tooltip title='테두리 스타일' placement='top'>
-                                        <button
-                                            className='select-option-button'
-                                            aria-controls='select-style'
-                                            aria-haspopup='true'
-                                            style={{textTransform: 'none'}}
-                                            onClick={this.handleFrameLineStyleOpen}
-                                        >
-                                            <LineStyleIcon />
-                                        </button>
-                                    </Tooltip>
-                                    <Menu
-                                        id='select-style'
-                                        anchorEl={this.state.setAnchorEl_}
-                                        keepMounted
-                                        open={Boolean(this.state.setAnchorEl_)}
-                                        onClose={this.handleFrameLineStyleClose}
-                                    >
-                                        <MenuItem onClick={() => this.handleFrameLineStyleChange('solid')}>
-                                            <div style={{ width: '3vw', borderTop: '3px solid #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineStyleChange('dotted')}>
-                                            <div style={{ width: '3vw', borderTop: '3px dotted #333'}} />
-                                        </MenuItem>
-                                        <MenuItem onClick={() => this.handleFrameLineStyleChange('dashed')}>
-                                            <div style={{ width: '3vw', borderTop: '3px dashed #333'}} />
-                                        </MenuItem>
-                                    </Menu>
-                                </span>
-
-                                <span className='Toolbar-info-icons'>
-                                    <Tooltip title='테두리 색상' placement='top'>
-                                        <BorderColorIcon aria-describedby={frameBorderId} style={{color: this.state.frameBorderColorHex}} onClick={this.handleFrameBorderColorClick} />
-                                    </Tooltip>
-                                    <Popover
-                                        id={frameBorderId}
-                                        open={frameBorderOpen}
-                                        anchorEl={this.state.anchorEl_}
-                                        onClose={this.handleFrameBorderClose}
-                                        anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center',
-                                        }}
-                                        transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'center',
-                                        }}
-                                    >
-                                        <SketchPicker color={ this.state.frameBorderColorHex } onChange={this.handleChangeFrameBorderColor} />
-                                    </Popover>
-                                </span>
-
-                                <span className='Toolbar-info-icons'>
-                                    <Tooltip title='색 채우기' placement='top'>
-                                        <FormatColorFillIcon aria-describedby={frameFillId} style={{color: this.state.frameFilColorHex}} onClick={this.handleFrameFillColorClick} />
-                                    </Tooltip>
-                                    <Popover
-                                        id={frameFillId}
-                                        open={frameFillOpen}
-                                        anchorEl={this.state.anchorEl__}
-                                        onClose={this.handleFrameFillClose}
-                                        anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center',
-                                        }}
-                                        transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'center',
-                                        }}
-                                    >
-                                        <SketchPicker color={ this.state.frameFilColorHex } onChange={this.handleChangeFrameFillColor} />
-                                    </Popover>
-                                </span>
-
-                                <div className='Toolbar-info-divider' />
-                            </>
-                            : null
-                        }
-
                         <span className='Toolbar-info-icons'>
                             <Tooltip title='삭제' placement='top'>
                                 <DeleteIcon onClick={() => this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.remove() : null} />
@@ -510,7 +345,7 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
 
                         <span className='Toolbar-info-icons'>
                             <Tooltip title='이미지 다운로드' placement='top'>
-                                <Download onClick={this.props.onSaveImage} />
+                                <Download onClick={this.props.onSaveImage} style={{ color: 'blue' }}/>
                             </Tooltip>
                         </span>
 
@@ -536,67 +371,6 @@ class Toolbar extends React.Component<ToolbarProps, ToolbarStates> {
     private handleClose = () => {
         this.setState({ anchorEl: null});
     }
-
-    private handleFrameLineWeightOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-        this.setState({
-            setAnchorEl: event.currentTarget
-        });
-    };
-
-    private handleFrameLineWeightClose = () => {
-        this.setState({ setAnchorEl: null});
-    }
-
-    private handleFrameLineWeightChange = (value) => {
-        this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.alignmentHandler.frameLineWeight(value) : null;
-        setTimeout(() => {
-            this.handleFrameLineWeightClose();
-        }, 5);
-    }
-
-    private handleFrameLineStyleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-        this.setState({
-            setAnchorEl_: event.currentTarget
-        });
-    };
-
-    private handleFrameLineStyleClose = () => {
-        this.setState({ setAnchorEl_: null});
-    }
-
-    private handleFrameLineStyleChange = (value) => {
-        this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.alignmentHandler.frameLineStyle(value) : null;
-        setTimeout(() => {
-            this.handleFrameLineStyleClose();
-        }, 5);
-    }
-
-    private handleFrameBorderColorClick = (e) => {
-        this.setState({ anchorEl_: e.currentTarget});
-    }
-
-    private handleChangeFrameBorderColor = (color) => {
-        this.setState({ frameBorderColorHex: color.hex });
-        this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.alignmentHandler.frameBorderColor(color.hex) : null;
-    }
-
-    private handleFrameBorderClose = () => {
-        this.setState({ anchorEl_: null});
-    }
-
-    private handleFrameFillColorClick = (e) => {
-        this.setState({ anchorEl__: e.currentTarget});
-    }
-
-    private handleChangeFrameFillColor = (color) => {
-        this.setState({ frameFilColorHex: color.hex });
-        this.props.canvasRef.current.handler ? this.props.canvasRef.current.handler.alignmentHandler.frameFillColor(color.hex) : null;
-    }
-
-    private handleFrameFillClose = () => {
-        this.setState({ anchorEl__: null});
-    }
 }
 
 export default injectIntl(Toolbar);
-// export default Toolbar;

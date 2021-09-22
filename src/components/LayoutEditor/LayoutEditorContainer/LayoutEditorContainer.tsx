@@ -241,31 +241,6 @@ const LayoutEditorContainer = (props: any) => {
                       </RadioGroup>
                     </div>
 
-                    <div className='LayoutEditor-InfoContainer-Length-Cover'>
-                      <div className='LayoutEditor-InfoContainer-Length'>
-                          <div className='Length-Head'>
-                            <FormattedMessage
-                                id='app-LayoutEditor.horizontal'
-                                defaultMessage='Horizontal'
-                            />
-                          </div>
-                          <div className='Length-TextField'>
-                              <TextField type='number' className='TextField-Info' onChange={handleHorizontal} value={tmpHorizontal} />
-                          </div>
-                      </div>
-
-                      <div className='LayoutEditor-InfoContainer-Length'>
-                          <div className='Length-Head'>
-                            <FormattedMessage
-                                id='app-LayoutEditor.vertical'
-                                defaultMessage='Vertical'
-                            />
-                          </div>
-                          <div className='Length-TextField'>
-                              <TextField type='number' className='TextField-Info' onChange={handleVertical} value={tmpVertical} />
-                          </div>
-                      </div>
-                    </div>
 
                   <div className='LayoutEditor-InfoContainer-Foot'>
                       <Button className='Foot-Info' variant='contained' color='primary' onClick={handleNext}>

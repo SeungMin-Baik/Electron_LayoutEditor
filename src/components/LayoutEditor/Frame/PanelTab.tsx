@@ -119,7 +119,7 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
         this.findThumbnail = this.findThumbnail.bind(this);
         this.state = {
             render: 'Image',
-            textFieldValue: 'New text',
+            textFieldValue: '',
             textSizeValue: 30,
             textFamilyValue: 'Anton',
             findThumbnails: [],
@@ -296,7 +296,7 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                                 }
                             </Select> */}
                         </ListItem>
-                        <ListItem className='panel-text'>
+                        {/* <ListItem className='panel-text'>
                             <TextField
                                 label='텍스트를 입력하세요'
                                 className='panel-textInput'
@@ -306,10 +306,10 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                                 value={this.state.textFieldValue}
                                 onChange={this.handleTextFieldChange}
                             />
-                        </ListItem>
+                        </ListItem> */}
 
-                        <div className='panel-text-description'> 아래 텍스트를 원하는 위치에 끌어놓으세요. </div>
-                        <Tooltip title='텍스트를 원하는 위치에 끌어놓으세요' placement='top'>
+                        <div className='panel-text-description'> 아래 텍스트 박스를 원하는 위치에 끌어놓으세요. </div>
+                        <Tooltip title='텍스트 박스를 원하는 위치에 끌어놓으세요' placement='top'>
                             <ListItem
                                 className='panel-text'
                                 onDragStart={(e) => this.events.onDragStart(e, this.itemText)}
@@ -330,7 +330,8 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                                     className='panel-textResult'
                                     draggable='true'
                                     variant='outlined'
-                                    value={this.state.textFieldValue}
+                                    label='원하는 위치에 끌어놓으세요'
+                                    // value={this.state.textFieldValue}
                                     onDragStart={(e) => this.events.onDragStart(e, this.itemText)}
                                     onDragEnd={(e) => this.events.onDragEnd(e)}
                                     // onChange={this.handleTextFieldChange}
@@ -551,7 +552,7 @@ class PanelTab extends React.Component<EditorTabProps & InjectedIntlProps, Edito
                 else {
                     this.handlers.onAddItem(newItem, false);
                     this.setState({
-                        textFieldValue: 'New Text',
+                        textFieldValue: '',
                         textSizeValue: 80
                     });
                 }

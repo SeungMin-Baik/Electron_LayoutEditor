@@ -15,8 +15,7 @@
             height: 70%;
             margin-top: 5%;
             padding: 25px;
-            .LayoutEditor-InfoContainer-Title {
-                
+            .LayoutEditor-InfoContainer-Title {                
                 .LayoutEditor-InfoContainer-Body {
                     text-align: -webkit-center;
                     .Title-Info {
@@ -26,12 +25,13 @@
                         color: #00e2a5;
                         padding-bottom: 2vh;
                         padding-top: 1vh;
-                        margin-top: 5vh;
+                        margin-top: 10vh;
                     }
                 }
             }
     
             .LayoutEditor-InfoContainer-Ratio {
+                padding-top: 1vh;
                 padding-bottom: 2vh;
                 .InfoContainer-Ratio-Group {
                     justify-content: center;

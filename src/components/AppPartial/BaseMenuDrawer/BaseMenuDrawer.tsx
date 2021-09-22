@@ -137,10 +137,7 @@ class BaseMenuDrawer extends React.Component<BaseMenuDrawerProps, BaseMenuDrawer
 
                         {/* Menu padding */}
                         {
-                            `/${window.location.pathname.substring(4)}` !== '/layoutEditor' ?
-                                <div className='LayoutEditor-Menu-Drawer-Pad' />
-                            :
-                                <div className='LayoutEditor-Menu-Drawer-Pad-Editor' />
+                            <div className='LayoutEditor-Menu-Drawer-Pad' />
                         }
 
                     </>

@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import InfoIcon from '@material-ui/icons/Info';
 import TextField from '@material-ui/core/TextField';
+import { Tooltip } from '@material-ui/core';
 
 import { push } from 'connected-react-router';
 
@@ -74,65 +75,66 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
                     {
                         this.state.findClientData.length > 0 ?
                         this.state.findClientData.filter(ClientData => ClientData.FileData.name.indexOf(this.state.saveTitleValue) !== -1).map(ClientData => (
-                            <GridListTile
-                                key={ClientData._id}
-                                onDragStart={this.props.isEditor ? (e) => this.props.onDragStart(e, ClientData) : null}
-                                onDragEnd={this.props.isEditor ? (e) => this.props.onDragEnd(e, ClientData) : null }
-                            >
-                                {
-                                    !this.props.isEditor ?
-                                        <div className='actionSection'>
-                                            <div className='editButton' onClick={() => this.linkToEditPstn(ClientData._id)}>
-                                                <Fab variant='round' size='small' className='editButton-fab'>
-                                                    <FontAwesomeIcon className='editButton-info' icon={faEdit} />
-                                                </Fab>
+                            <Tooltip title={ClientData.FileData.name} placement='top' disableHoverListener={this.props.isEditor ? false : true}>
+                                <GridListTile
+                                    key={ClientData._id}
+                                    onDragStart={this.props.isEditor ? (e) => this.props.onDragStart(e, ClientData) : null}
+                                    onDragEnd={this.props.isEditor ? (e) => this.props.onDragEnd(e, ClientData) : null }
+                                >
+                                    {
+                                        !this.props.isEditor ?
+                                            <div className='actionSection'>
+                                                <div className='editButton' onClick={() => this.linkToEditPstn(ClientData._id)}>
+                                                    <Fab variant='round' size='small' className='editButton-fab'>
+                                                        <FontAwesomeIcon className='editButton-info' icon={faEdit} />
+                                                    </Fab>
+                                                </div>
+                                                <div className='deleteButton' onClick={() => this.handleDelConfirm(true, 'INIT', ClientData._id)}>
+                                                    <Fab variant='round' size='small' className='deleteButton-fab'>
+                                                        <FontAwesomeIcon className='deleteButton-info' icon={faTrashAlt} />
+                                                    </Fab>
+                                                </div>
                                             </div>
-                                            <div className='deleteButton' onClick={() => this.handleDelConfirm(true, 'INIT', ClientData._id)}>
-                                                <Fab variant='round' size='small' className='deleteButton-fab'>
-                                                    <FontAwesomeIcon className='deleteButton-info' icon={faTrashAlt} />
-                                                </Fab>
-                                            </div>
-                                        </div>
-                                    : null
-                                }
-                                <div className='Thumbnail-Client'>
-                                    <img
-                                        data-all={JSON.stringify({
-                                            id: ClientData._id,
-                                            mimeType: '',
-                                            name: ClientData.FileData.name,
-                                            md5: '',
-                                            fileType: '',
-                                            srcLink: '',
-                                            isLocal: ClientData.FileData.isLocal,
-                                            code: 1,
-                                            colorLabel: '#0a84d2',
-                                            type: 'PRESENTATION'
-                                        })}
-                                        className='imageInfo'
-                                        src={
-                                            this.state.findThumbnails.indexOf(ClientData._id + '_thumb.png') === - 1 ?
-                                            imageLoad :
-                                            electronConfig.APP.DIR_PATH.THUMBNAIL_PATH + '/' + this.state.findThumbnails.filter(x => x === (ClientData._id + '_thumb.png'))
-                                        }
-                                        alt={ClientData.FileData.name}
-                                    />
-                                </div>
-                                {
-                                    !this.props.isEditor ?
-                                        <GridListTileBar
-                                            title={ClientData.FileData.name}
-                                            subtitle={<span>by: Guest</span>}
-                                            actionIcon={
-                                                <IconButton aria-label={`info about ${ClientData.FileData.name}`} className='icon'>
-                                                    <InfoIcon />
-                                                </IconButton>
+                                        : null
+                                    }
+                                    <div className='Thumbnail-Client'>
+                                        <img
+                                            data-all={JSON.stringify({
+                                                id: ClientData._id,
+                                                mimeType: '',
+                                                name: ClientData.FileData.name,
+                                                md5: '',
+                                                fileType: '',
+                                                srcLink: '',
+                                                isLocal: ClientData.FileData.isLocal,
+                                                code: 1,
+                                                colorLabel: '#0a84d2',
+                                                type: 'PRESENTATION'
+                                            })}
+                                            className='imageInfo'
+                                            src={
+                                                this.state.findThumbnails.indexOf(ClientData._id + '_thumb.png') === - 1 ?
+                                                imageLoad :
+                                                electronConfig.APP.DIR_PATH.THUMBNAIL_PATH + '/' + this.state.findThumbnails.filter(x => x === (ClientData._id + '_thumb.png'))
                                             }
+                                            alt={ClientData.FileData.name}
                                         />
-                                    : null
-                                }
-
-                            </GridListTile>
+                                    </div>
+                                    {
+                                        !this.props.isEditor ?
+                                            <GridListTileBar
+                                                title={ClientData.FileData.name}
+                                                subtitle={<span>by: Guest</span>}
+                                                actionIcon={
+                                                    <IconButton aria-label={`info about ${ClientData.FileData.name}`} className='icon'>
+                                                        <InfoIcon />
+                                                    </IconButton>
+                                                }
+                                            />
+                                        : null
+                                    }
+                                </GridListTile>
+                            </Tooltip>
                         ))
                         :
                             <div className='PresentationDataListTable-nullData'>
@@ -156,22 +158,24 @@ class PresentationDataList extends React.Component<PresentationDataListProps, Pr
                 : null
             }
             {
-                <div className='LayoutEditor-Head'>
-                    <div className='LayoutEditor-Head-Search'>
-                        <TextField
-                            className='Search-Info'
-                            onChange={this.handleSearchValue}
-                            autoComplete='off'
-                            label={
-                                formatMessage({
-                                    id: 'app-common.search',
-                                    defaultMessage: 'Search'
-                                })
-                            }
-                        >
-                        </TextField>
+                !this.props.isEditor ?
+                    <div className='LayoutEditor-Head'>
+                        <div className='LayoutEditor-Head-Search'>
+                            <TextField
+                                className='Search-Info'
+                                onChange={this.handleSearchValue}
+                                autoComplete='off'
+                                label={
+                                    formatMessage({
+                                        id: 'app-common.search',
+                                        defaultMessage: 'Search'
+                                    })
+                                }
+                            >
+                            </TextField>
+                        </div>
                     </div>
-                </div>
+                : null
             }
             {
                 body

@@ -12,13 +12,39 @@
             color: black;
             font-weight: bold;
             font-size: 3.5em;
-            margin-top: 20vh;
+            margin-top: 15vh;
+            animation: showTopText 1s;
+        }
+
+        @keyframes showTopText {
+            0% { transform: translate3d(0, 100%, 0); opacity: 0;}
+            100% { transform: translate3d(0, 0, 0); opacity: 1;}
+        }
+
+        .HomeInfo-Body-Image {
+            display: flex;
+            justify-content: center;
+            margin-top: 6vh;
+            
+            img:first-of-type {
+                animation: showup 1s 1s;
+            }
+            
+            img:last-of-type {
+                animation: showup 1s 1.5s;
+            }
+        }
+
+
+        @keyframes showup {
+            0% {opacity:0;}
+            100% {opacity:1;}
         }
 
         .HomeInfo-Body-Button {
             .Button-Info {
-                margin-top: 5vh;
-                padding: 2vh 7vw;
+                margin-top: 9vh;
+                padding: 2vh 9vw;
                 border-radius: 20px;
                 border: none;
                 font-size: 1em;
