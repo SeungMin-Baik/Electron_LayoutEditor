@@ -1,3 +1,14 @@
+# Tech Stack
+
+* Node.js
+* Electron
+* ReactJS
+* Typescript
+* NeDB
+
+![home-2](https://user-images.githubusercontent.com/59187220/134610703-8e249c2b-ff51-4eaf-b04d-a4c99cd44451.png)
+![home-1](https://user-images.githubusercontent.com/59187220/134610742-b12c3dd7-4b09-4149-bfd1-ccd61dd5db8a.png)
+
 ## Version Info 
 
 * NodeJS : 10.16.0
