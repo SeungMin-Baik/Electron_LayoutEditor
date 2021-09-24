@@ -2,8 +2,9 @@
 ## This editor supports free content design and supports downloading as .png
 <br />
 
-![home-2](https://user-images.githubusercontent.com/59187220/134610703-8e249c2b-ff51-4eaf-b04d-a4c99cd44451.png)
-![home-1](https://user-images.githubusercontent.com/59187220/134610742-b12c3dd7-4b09-4149-bfd1-ccd61dd5db8a.png)
+![11](https://user-images.githubusercontent.com/59187220/134611193-9b4e0ffb-c70e-4464-bf49-33426f59e1ae.png)
+![22](https://user-images.githubusercontent.com/59187220/134611222-19ca4d73-e4dd-4a20-8975-e7c8d703ef68.png)
+
 
 ## Tech Stack
 
@@ -50,3 +51,9 @@
   
     in **[node_modules\canvas\node_modules\nan\nan_typedarray_contents.h]** 
 5. Run yarn package-osname (ex. win64bit -> yarn package-win64)
+
+## Issue
+
+![에디터-이슈1](https://user-images.githubusercontent.com/59187220/134611331-69e578f5-db51-4e8f-8015-1954aa972d2e.png)
+
+If you see this error, Remove folder [node_modules@types\react-native]
