@@ -1,6 +1,6 @@
 
 ## This editor supports free content design and supports downloading as .png
-## It support multi language
+
 <br />
 
 ![11](https://user-images.githubusercontent.com/59187220/134611193-9b4e0ffb-c70e-4464-bf49-33426f59e1ae.png)
