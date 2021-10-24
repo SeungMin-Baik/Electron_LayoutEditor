@@ -1,3 +1,21 @@
+
+## This editor supports free content design and supports downloading as .png
+
+<br />
+
+![11](https://user-images.githubusercontent.com/59187220/134611193-9b4e0ffb-c70e-4464-bf49-33426f59e1ae.png)
+![22](https://user-images.githubusercontent.com/59187220/134611222-19ca4d73-e4dd-4a20-8975-e7c8d703ef68.png)
+
+
+## Tech Stack
+
+* Node.js
+* Electron
+* ReactJS
+* Typescript
+* SCSS
+* NeDB
+
 ## Version Info 
 
 * NodeJS : 10.16.0
@@ -35,3 +53,9 @@
   
     in **[node_modules\canvas\node_modules\nan\nan_typedarray_contents.h]** 
 5. Run yarn package-osname (ex. win64bit -> yarn package-win64)
+
+## Issue
+
+![에디터-이슈1](https://user-images.githubusercontent.com/59187220/134611331-69e578f5-db51-4e8f-8015-1954aa972d2e.png)
+
+If you see this error, Remove folder [node_modules@types\react-native]
