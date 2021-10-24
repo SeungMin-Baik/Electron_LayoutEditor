@@ -8,7 +8,7 @@ import * as WebpackDashboardPlugin from 'webpack-dashboard/plugin';
 import baseConfig from './webpack.config.base';
 
 const port = process.env.PORT || 9000;
-const config: webpack.Configuration = merge(baseConfig, {
+const config: any = merge(baseConfig, {
     entry: [
         'react-hot-loader/patch',
         `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr&reload=true`,

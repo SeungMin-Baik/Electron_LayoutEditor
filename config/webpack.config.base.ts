@@ -27,7 +27,7 @@ fs.readdirSync('node_modules')
     });
 
 /** Webpack base configuration. */
-const config: webpack.Configuration = {
+const config: any = {
     output: {
         path: path.resolve(__dirname, '..', 'src'),
         filename: 'bundle.js',

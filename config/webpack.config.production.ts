@@ -7,7 +7,7 @@ import * as TerserWebpackPlugin from 'terser-webpack-plugin';
 import * as OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
-const config: webpack.Configuration = merge(baseConfig, {
+const config: any = merge(baseConfig, {
     mode: 'production',
 
     entry: './src/index.tsx',
